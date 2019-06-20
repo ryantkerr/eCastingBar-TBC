@@ -2,7 +2,7 @@
 
 The casting bar addon that replaces the default player spellcasting bar with a customizable replacement. This addon has [been around since Vanilla WoW](https://youtu.be/XM1DLuL5DYI?t=24), and now it's available for Classic WoW 1.13.2.
 
-![eCastingBar Config](https://user-images.githubusercontent.com/52019397/59816138-f612b580-92e8-11e9-8313-2da5c1f0909d.png)
+![eCastingBar Config](https://user-images.githubusercontent.com/52019397/59816138-f612b580-92e8-11e9-8313-2da5c1f0909d.png) ![eCastingBar Screen](https://user-images.githubusercontent.com/52019397/59818231-fa42d100-92f0-11e9-8033-c439ad03b305.png)
 
 ## About
 
