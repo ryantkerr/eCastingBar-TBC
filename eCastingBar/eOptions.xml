@@ -460,7 +460,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -479,7 +479,7 @@
     								eCastingBarWidthSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarHeightSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -498,7 +498,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -517,7 +517,7 @@
     								eCastingBarHeightSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarLeftSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -536,7 +536,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -555,7 +555,7 @@
     								eCastingBarLeftSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarBottomSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -574,7 +574,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -593,7 +593,7 @@
     								eCastingBarBottomSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
 
     					<!-- Texture Select Menu -->
@@ -1136,7 +1136,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarMirrorWidthEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarMirrorWidthEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1155,7 +1155,7 @@
     								eCastingBarMirrorWidthSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarMirrorHeightSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -1174,7 +1174,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarMirrorHeightEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarMirrorHeightEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1193,7 +1193,7 @@
     								eCastingBarMirrorHeightSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					
     					<Slider name="eCastingBarMirrorLeftSlider" inherits="eCastingBarSliderTemplate">
@@ -1213,7 +1213,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarMirrorLeftEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarMirrorLeftEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1232,7 +1232,7 @@
     								eCastingBarMirrorLeftSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarMirrorBottomSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -1251,7 +1251,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarMirrorBottomEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarMirrorBottomEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1270,7 +1270,7 @@
     								eCastingBarMirrorBottomSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					
     					<!-- Texture Select Menu -->
@@ -1795,7 +1795,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarTargetBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarTargetBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1814,7 +1814,7 @@
     								eCastingBarTargetBarWidthSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarTargetBarHeightSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -1833,7 +1833,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarTargetBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarTargetBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1852,7 +1852,7 @@
     								eCastingBarTargetBarHeightSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarTargetBarLeftSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -1871,7 +1871,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarTargetBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarTargetBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1890,7 +1890,7 @@
     								eCastingBarTargetBarLeftSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarTargetBarBottomSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -1909,7 +1909,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarTargetBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarTargetBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1928,7 +1928,7 @@
     								eCastingBarTargetBarBottomSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					
     					<!-- Texture Select Menu -->
@@ -2500,7 +2500,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarFocusBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarFocusBarWidthEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -2519,7 +2519,7 @@
     								eCastingBarFocusBarWidthSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarFocusBarHeightSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -2538,7 +2538,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-    					<EditBox name="eCastingBarFocusBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarFocusBarHeightEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -2557,7 +2557,7 @@
     								eCastingBarFocusBarHeightSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarFocusBarLeftSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -2576,7 +2576,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarFocusBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarFocusBarLeftEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -2595,7 +2595,7 @@
     								eCastingBarFocusBarLeftSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					<Slider name="eCastingBarFocusBarBottomSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
@@ -2614,7 +2614,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>					
-    					<EditBox name="eCastingBarFocusBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate">
+    					<EditBox name="eCastingBarFocusBarBottomEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -2633,7 +2633,7 @@
     								eCastingBarFocusBarBottomSlider:SetValue(self:GetNumber())
     							</OnEnterPressed>
     						</Scripts>
-    						<FontString inherits="ChatFontNormal" bytes="64"/>
+    						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					
     					<!-- Texture Select Menu -->
