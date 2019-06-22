@@ -22,7 +22,7 @@
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
 		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="eCastingBarDragButton">
+			<Anchor point="TOPLEFT">
 				<Offset>
 					<AbsDimension x="15" y="0"/>
 				</Offset>
@@ -314,7 +314,7 @@
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
 		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="eCastingBarTargetBarDragButton">
+			<Anchor point="TOPLEFT">
 				<Offset>
 					<AbsDimension x="15" y="0"/>
 				</Offset>
@@ -610,7 +610,7 @@
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
 		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="eCastingBarFocusBarDragButton">
+			<Anchor point="TOPLEFT">
 				<Offset>
 					<AbsDimension x="15" y="0"/>
 				</Offset>

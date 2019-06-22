@@ -7,7 +7,7 @@
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
 		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="$parentDragButton">
+			<Anchor point="TOPLEFT">
 				<Offset>
 					<AbsDimension x="15" y="0"/>
 				</Offset>
