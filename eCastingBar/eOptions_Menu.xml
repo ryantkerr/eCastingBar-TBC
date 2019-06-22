@@ -136,7 +136,7 @@
 	</Scripts>
 </Button>
 
-<Button name="eCastingBar_DropMenu" inherits="eCastingBar_TooltipBGTemplate" hidden="true" frameStrata="FULLSCREEN" parent="eCastingBarMenuControlTemplate">
+<Button name="eCastingBar_DropMenu" inherits="eCastingBar_TooltipBGTemplate" hidden="true" frameStrata="FULLSCREEN">
 	<Size><AbsDimension x="10" y="10"/></Size>
 	<Anchors>
 		<Anchor point="CENTER"/>
