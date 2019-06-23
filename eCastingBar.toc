@@ -1,6 +1,6 @@
 ## Interface: 11302
 ## Title: eCastingBar Classic
-## Version: @project-version@
+## Version: 1.0.0
 ## Author: shoestare
 ## Notes: A customizable replacement for the default castingbar.
 ## DefaultState: Enabled
