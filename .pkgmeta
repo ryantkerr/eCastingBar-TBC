@@ -1,4 +1,11 @@
+package-as:
+  eCastingBar
+
 externals:
   libs/eCastingBarClassic:
     url: git://github.com/shoestare/eCastingBarClassic
     tag: release
+
+ignore:
+    - .gitignore
+    - README.md
