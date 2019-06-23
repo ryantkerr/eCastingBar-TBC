@@ -1,0 +1,4 @@
+externals:
+  libs/eCastingBarClassic:
+    url: git://github.com/shoestare/eCastingBarClassic
+    tag: release

@@ -1,12 +1,13 @@
 ## Interface: 11302
 ## Title: eCastingBar Classic
-## Version: 1.1
+## Version: @project-version@
 ## Author: shoestare
 ## Notes: A customizable replacement for the default castingbar.
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 ## SavedVariables: eCastingBar_Settings
 ## SavedVariablesPerCharacter: eCastingBar_Saved
+## X-Curse-Project-ID: 325069
 Localization\localization.lua
 eCastingBar.xml
 eCastingMirrorBar.xml
