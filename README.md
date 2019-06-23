@@ -11,7 +11,7 @@ First of all I'd just like to mention that I am not the original creator of this
 ## Installation
 
 Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
-**Rename** `eCastingBarClassic-release` to `eCastingBar` in your Addons folder.
+**Rename `eCastingBarClassic-release` to `eCastingBar` in your Addons folder**.
 
 ## Configuration
 
