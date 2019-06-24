@@ -10,15 +10,16 @@ First of all I'd just like to mention that I am not the original creator of this
 
 ## Installation
 
-###[Download from Curseforge (updates with Twitch client)](https://www.curseforge.com/wow/addons/ecastingbarclassic)
+**[Download from Curseforge (updates with Twitch client)](https://www.curseforge.com/wow/addons/ecastingbarclassic)**
 
 *Curseforge Manual Download Install*
-Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
-
-###Github Download
 
 Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
-**Rename `eCastingBarClassic-release` to `eCastingBar` in your Addons folder**.
+
+**Github Download**
+
+Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
+*Rename `eCastingBarClassic-release` to `eCastingBar` in your Addons folder*.
 
 ## Configuration
 
