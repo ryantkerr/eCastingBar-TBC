@@ -1,8 +1,8 @@
 local eCB_FMT_Orig_BeginFlight;
 local eCB_FMT_Orig_EndFlight;
 local f = CreateFrame("Button", "eCBTestButton", UIParent, "TabButtonTemplate")
-f:SetText(CASTINGBAR_CASTING_TAB..CASTINGBAR_MIRROR_TAB..CASTINGBAR_TARGET_TAB..CASTINGBAR_FOCUS_TAB..CASTINGBAR_PROFILE_TAB)
-eCB_Tab_Padding = ((362 - f:GetTextWidth())/5)-24
+f:SetText(CASTINGBAR_CASTING_TAB..CASTINGBAR_MIRROR_TAB..CASTINGBAR_TARGET_TAB..CASTINGBAR_PROFILE_TAB)
+eCB_Tab_Padding = ((413 - f:GetTextWidth())/5)-24
 
 function eCastingBarOptions_OnLoad()
 	tinsert(UISpecialFrames, "eCB_OptionFrame");
@@ -97,8 +97,7 @@ function eCastingBar_ColorPicker_Cancelled(color)
   _G[ColorPickerFrame.index]:SetVertexColor(unpack(color))
   if (ColorPickerFrame.objindex == "FlashBorderColor" 
   or ColorPickerFrame.objindex == "MirrorFlashBorderColor" 
-  or ColorPickerFrame.objindex == "TargetBarFlashBorderColor"
-  or ColorPickerFrame.objindex == "FocusBarFlashBorderColor") then
+  or ColorPickerFrame.objindex == "TargetBarFlashBorderColor") then
     eCastingBar_checkFlashBorderColors()
   end
 end
@@ -124,9 +123,7 @@ function eCastingBar_ColorPicker_ColorChanged()
     elseif (ColorPickerFrame.objindex == "SpellColor" 
     	or ColorPickerFrame.objindex == "ChannelColor" 
     	or ColorPickerFrame.objindex == "TargetBarSpellColor" 
-    	or ColorPickerFrame.objindex == "TargetBarChannelColor"  	
-    	or ColorPickerFrame.objindex == "FocusBarSpellColor" 
-    	or ColorPickerFrame.objindex == "FocusBarChannelColor"
+    	or ColorPickerFrame.objindex == "TargetBarChannelColor"
     	or ColorPickerFrame.objindex == "FeignDeathColor"
     	or ColorPickerFrame.objindex == "BreathColor"
     	or ColorPickerFrame.objindex == "ExhaustionColor"
@@ -142,12 +139,10 @@ function eCB_OptionFrame_CastingTab_Click()
 	PanelTemplates_SelectTab(eCB_OptionFrameCastingTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameMirrorTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameTargetTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameFocusTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameProfileTab);
 	eCB_OptionFrameTabbedCasting:Show();
 	eCB_OptionFrameTabbedMirror:Hide();
 	eCB_OptionFrameTabbedTarget:Hide();
-	eCB_OptionFrameTabbedFocus:Hide();
 	eCB_OptionFrameTabbedProfile:Hide();
 	eCastingBar_DropMenu:Hide();
 	eCastingBar_checkTextures();
@@ -157,12 +152,10 @@ function eCB_OptionFrame_MirrorTab_Click()
 	PanelTemplates_SelectTab(eCB_OptionFrameMirrorTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameCastingTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameTargetTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameFocusTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameProfileTab);
 	eCB_OptionFrameTabbedCasting:Hide();
 	eCB_OptionFrameTabbedMirror:Show();
 	eCB_OptionFrameTabbedTarget:Hide();
-	eCB_OptionFrameTabbedFocus:Hide();
 	eCB_OptionFrameTabbedProfile:Hide();
 	eCastingBar_DropMenu:Hide();
 	eCastingBar_checkTextures();
@@ -172,27 +165,10 @@ function eCB_OptionFrame_TargetTab_Click()
 	PanelTemplates_SelectTab(eCB_OptionFrameTargetTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameCastingTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameMirrorTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameFocusTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameProfileTab);
 	eCB_OptionFrameTabbedCasting:Hide();
 	eCB_OptionFrameTabbedMirror:Hide();
 	eCB_OptionFrameTabbedTarget:Show();
-	eCB_OptionFrameTabbedFocus:Hide();
-	eCB_OptionFrameTabbedProfile:Hide();
-	eCastingBar_DropMenu:Hide();
-	eCastingBar_checkTextures();
-end
-
-function eCB_OptionFrame_FocusTab_Click()
-	PanelTemplates_SelectTab(eCB_OptionFrameFocusTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameCastingTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameMirrorTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameTargetTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameProfileTab);
-	eCB_OptionFrameTabbedCasting:Hide();
-	eCB_OptionFrameTabbedMirror:Hide();
-	eCB_OptionFrameTabbedTarget:Hide();
-	eCB_OptionFrameTabbedFocus:Show();
 	eCB_OptionFrameTabbedProfile:Hide();
 	eCastingBar_DropMenu:Hide();
 	eCastingBar_checkTextures();
@@ -203,11 +179,9 @@ function eCB_OptionFrame_ProfileTab_Click()
 	PanelTemplates_DeselectTab(eCB_OptionFrameCastingTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameMirrorTab);
 	PanelTemplates_DeselectTab(eCB_OptionFrameTargetTab);
-	PanelTemplates_DeselectTab(eCB_OptionFrameFocusTab);
 	eCB_OptionFrameTabbedCasting:Hide();
 	eCB_OptionFrameTabbedMirror:Hide();
 	eCB_OptionFrameTabbedTarget:Hide();
-	eCB_OptionFrameTabbedFocus:Hide();
 	eCB_OptionFrameTabbedProfile:Show();
 	eCastingBar_DropMenu:Hide();
 end
@@ -352,17 +326,11 @@ function eCastingBar_Menu_OnClick(self)
 	elseif (eCastingBar_DropMenu.index == "TargetBarSelectTexture") then
 		eCastingBar_Saved.TargetBarTexture = self.value
 		eCastingBar_checkTextures();
-	elseif (eCastingBar_DropMenu.index == "FocusBarSelectTexture") then
-		eCastingBar_Saved.FocusBarTexture = self.value
-		eCastingBar_checkTextures();
 	elseif (eCastingBar_DropMenu.index == "IconPosition") then
 		eCastingBar_Saved.IconPosition = self.value
 		eCastingBar_setIcons();
 	elseif (eCastingBar_DropMenu.index == "TargetBarIconPosition") then
 		eCastingBar_Saved.TargetBarIconPosition = self.value
-		eCastingBar_setIcons();
-	elseif (eCastingBar_DropMenu.index == "FocusBarIconPosition") then
-		eCastingBar_Saved.FocusBarIconPosition = self.value
 		eCastingBar_setIcons();
 	end
 end

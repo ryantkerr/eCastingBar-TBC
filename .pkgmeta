@@ -1,3 +1,5 @@
+enable-nolib-creation: no
+
 externals:
   libs/eCastingBarClassic:
     url: git://github.com/shoestare/eCastingBarClassic

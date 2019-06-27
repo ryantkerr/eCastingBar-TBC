@@ -23,19 +23,17 @@ CASTINGBAR_RESET = "Resetting Default Settings"
 -- Bindings
 BINDING_HEADER_ECASTINGBAR = "eCastingBar"
 BINDING_NAME_ECASTINGBARDLG = "Toggle Configuration Window";
-ECASTINGBAR_TITLE = "Configure eCastingBar"
+ECASTINGBAR_TITLE = "eCastingBar Classic"
 
 -- Bar Text
 OUTLINE_TXT = "eCasting Bar Outline."
 MIRROR_OUTLINE_TXT = "Mirror Bar Outline."
 TARGET_OUTLINE_TXT = "Target Bar Outline."
-FOCUS_OUTLINE_TXT = "Focus Bar Outline."
 
 -- general buttons
 CASTINGBAR_CASTING_TAB      = "Casting Bar"
 CASTINGBAR_MIRROR_TAB       = "Mirror Bar"
 CASTINGBAR_TARGET_TAB       = "Target Bar"
-CASTINGBAR_FOCUS_TAB        = "Focus Bar"
 CASTINGBAR_PROFILE_TAB      = "Profiles"
 CASTINGBAR_DEFAULTS_BUTTON  = "Defaults"
 CASTINGBAR_CLOSE_BUTTON     = "Close"
@@ -65,13 +63,6 @@ CASTING_BAR_BUTTONS = {
   ["TargetBarShowDelay"] = "Show Delay",
   ["TargetBarShowSpellName"] = "Show Spell Name",
 	["TargetBarShowSpellRank"] = "Show Spell Rank",
-  ["FocusBarLocked"] = "Hide Outline",
-  ["FocusBarEnabled"] = "Enabled",
-  ["FocusBarShowTime"] = "Show Time",
-  ["FocusBarHideBorder"] = "Hide Border",
-  ["FocusBarShowDelay"] = "Show Delay",
-  ["FocusBarShowSpellName"] = "Show Spell Name",
-	["FocusBarShowSpellRank"] = "Show Spell Rank"
 }
 
 CASTINGBAR_SLIDER_WIDTH_TEXT            = "Width"
@@ -83,7 +74,6 @@ CASTINGBAR_SLIDER_ALPHA_TEXT            = "Background Alpha"
 CASTINGBAR_CASTINGBAR_TEXTURE_TEXT      = "Casting Bar Texture"
 CASTINGBAR_MIRRORBAR_TEXTURE_TEXT       = "Mirror Bar Texture"
 CASTINGBAR_TARGETBAR_TEXTURE_TEXT       = "Target Bar Texture"
-CASTINGBAR_FOCUSBAR_TEXTURE_TEXT        = "Focus Bar Texture"
 CASTINGBAR_ICON_POSITION_TEXT           = "Spell Icon Position"
 CASTINGBAR_LEFT_TEXT                    = "Left"
 CASTINGBAR_RIGHT_TEXT                   = "Right"
@@ -111,13 +101,6 @@ CASTINGBAR_COLOR_LABEL = {
   ["TargetBarTimeColor"] = "Target Time",
   ["TargetBarDelayColor"] = "Target Delay",
   ["TargetBarFlashBorderColor"] = "Target Flash Border",
-  ["FocusBarSpellColor"] = "Focus Spell",
-  ["FocusBarChannelColor"] = "Focus Channel",
-  ["FocusBarSuccessColor"] = "Focus Success",
-  ["FocusBarFailedColor"] = "Focus Failed",
-  ["FocusBarTimeColor"] = "Focus Time",
-  ["FocusBarDelayColor"] = "Focus Delay",
-  ["FocusBarFlashBorderColor"] = "Focus Flash Border",
 }
 
 
@@ -149,7 +132,6 @@ BINDING_NAME_ECASTINGBARDLG = "설정 창 열기/닫기";
 OUTLINE_TXT         = "시전바 위치 조정"
 MIRROR_OUTLINE_TXT  = "타이머바 위치 조정"
 TARGET_OUTLINE_TXT  = "대상 시전바 위치 조정"
-FOCUS_OUTLINE_TXT 	= "주시 대상 시전바 위치 조정"
 
 -- genral
 ECASTINGBAR_TITLE           = "eCastingBar 설정"
@@ -157,7 +139,6 @@ ECASTINGBAR_TITLE           = "eCastingBar 설정"
 CASTINGBAR_CASTING_TAB      = "시전바"
 CASTINGBAR_MIRROR_TAB       = "타이머바"
 CASTINGBAR_TARGET_TAB       = "대상 시전바"
-CASTINGBAR_FOCUS_TAB        = "주시 대상 시전바"
 CASTINGBAR_PROFILE_TAB      = "프로파일"
 CASTINGBAR_DEFAULTS_BUTTON  = "초기화"
 CASTINGBAR_CLOSE_BUTTON     = "닫기"
@@ -187,13 +168,6 @@ CASTING_BAR_BUTTONS = {
   ["TargetBarShowDelay"]      = " 시전 지연 시간 표시",
   ["TargetBarShowSpellName"]  = " 주문 이름 표시",
   ["TargetBarShowSpellRank"]  = " 주문 레벨 표시",
-  ["FocusBarLocked"]					= " 주시 대상 시전바 위치 잠금",
-  ["FocusBarEnabled"]					= " 주시 대상 시전바 사용",
-  ["FocusBarShowTime"]				= " 시전 시간 표시",
-  ["FocusBarHideBorder"]			= " 외곽선 숨기기",
-  ["FocusBarShowDelay"]				= " 시전 지연 시간 표시",
-  ["FocusBarShowSpellName"]		= " 주문 이름 표시",
-  ["FocusBarShowSpellRank"]		= " 주문 레벨 표시",
 }
 
 CASTINGBAR_SLIDER_WIDTH_TEXT        = "넓이"
@@ -205,7 +179,6 @@ CASTINGBAR_SLIDER_ALPHA_TEXT        = "배경 투명도"
 CASTINGBAR_CASTINGBAR_TEXTURE_TEXT  = "시전바 텍스쳐"
 CASTINGBAR_MIRRORBAR_TEXTURE_TEXT   = "타이머바 텍스쳐"
 CASTINGBAR_TARGETBAR_TEXTURE_TEXT   = "시전바 텍스쳐"
-CASTINGBAR_FOCUSBAR_TEXTURE_TEXT    = "주시 대상 시전바 텍스쳐"
 CASTINGBAR_ICON_POSITION_TEXT       = "주문 아이콘 표시"
 CASTINGBAR_LEFT_TEXT                = "왼쪽"
 CASTINGBAR_RIGHT_TEXT               = "오른쪽"
@@ -233,13 +206,6 @@ CASTINGBAR_COLOR_LABEL = {
   ["TargetBarTimeColor"]        = "시전 시간",
   ["TargetBarDelayColor"]       = "시전 지연 시간",
   ["TargetBarFlashBorderColor"] = "외곽선 번쩍임",
-  ["FocusBarSpellColor"] 				= "주문 시전",
-  ["FocusBarChannelColor"] 			= "정신 집중",
-  ["FocusBarSuccessColor"] 			= "시전 성공",
-  ["FocusBarFailedColor"] 			= "시전 실패",
-  ["FocusBarTimeColor"] 				= "시전 시간",
-  ["FocusBarDelayColor"] 				= "시전 지연 시간",
-  ["FocusBarFlashBorderColor"] 	= "외곽선 번쩍임",
 }
 end
 
@@ -275,7 +241,6 @@ FOCUS_OUTLINE_TXT = "Barre Focus"
 CASTINGBAR_CASTING_TAB      = "Barre de Cast"
 CASTINGBAR_MIRROR_TAB       = "Barre Miroir"
 CASTINGBAR_TARGET_TAB       = "Barre Cible"
-CASTINGBAR_FOCUS_TAB        = "Barre Focus"
 CASTINGBAR_PROFILE_TAB      = "Profils"
 CASTINGBAR_DEFAULTS_BUTTON  = "D\195\169faut"
 CASTINGBAR_CLOSE_BUTTON     = "Fermer"
@@ -305,13 +270,6 @@ CASTING_BAR_BUTTONS = {
   ["TargetBarShowDelay"] = "Afficher le D\195\169lai",
   ["TargetBarShowSpellName"] = "Afficher le Nom du Sort",
   ["TargetBarShowSpellRank"] = "Afficher le Rang du Sort",
-  ["FocusBarLocked"] = "Cacher les contours",
-  ["FocusBarEnabled"] = "Activ\195\169",
-  ["FocusBarShowTime"] = "Afficher le temps",
-  ["FocusBarHideBorder"] = "Cacher la Bordure",
-  ["FocusBarShowDelay"] = "Afficher le D\195\169lai",
-  ["FocusBarShowSpellName"] = "Afficher le Nom du Sort",
-  ["FocusBarShowSpellRank"] = "Afficher le Rang du Sort",
 }
 
 CASTINGBAR_SLIDER_WIDTH_TEXT            = "Largeur"
@@ -323,7 +281,6 @@ CASTINGBAR_SLIDER_ALPHA_TEXT            = "Alpha de Fond"
 CASTINGBAR_CASTINGBAR_TEXTURE_TEXT      = "Texture de la Barre de Cast"
 CASTINGBAR_MIRRORBAR_TEXTURE_TEXT       = "Texture de la Barre Miroir"
 CASTINGBAR_TARGETBAR_TEXTURE_TEXT       = "Texture de la Barre Cible"
-CASTINGBAR_FOCUSBAR_TEXTURE_TEXT        = "Texture de la Barre Focus"
 CASTINGBAR_ICON_POSITION_TEXT           = "Icone du Sort"
 CASTINGBAR_LEFT_TEXT                    = "Gauche"
 CASTINGBAR_RIGHT_TEXT                   = "Droite"
@@ -351,13 +308,6 @@ CASTINGBAR_COLOR_LABEL = {
   ["TargetBarTimeColor"] = "Temps",
   ["TargetBarDelayColor"] = "D\195\169lai",
   ["TargetBarFlashBorderColor"] = "Flash",
-  ["FocusBarSpellColor"] = "Sort",
-  ["FocusBarChannelColor"] = "Canal",
-  ["FocusBarSuccessColor"] = "Succ\195\168s",
-  ["FocusBarFailedColor"] = "Echou\195\169",
-  ["FocusBarTimeColor"] = "Temps",
-  ["FocusBarDelayColor"] = "D\195\169lai",
-  ["FocusBarFlashBorderColor"] = "Flash",
 }
 end                  
 
@@ -393,7 +343,6 @@ FOCUS_OUTLINE_TXT = "焦点施法条"
 CASTINGBAR_CASTING_TAB      = "施法条"
 CASTINGBAR_MIRROR_TAB       = "镜像施法条"
 CASTINGBAR_TARGET_TAB       = "目标施法条"
-CASTINGBAR_FOCUS_TAB        = "焦点施法条"
 CASTINGBAR_PROFILE_TAB      = "配置文件"
 CASTINGBAR_DEFAULTS_BUTTON  = "默认配置"
 CASTINGBAR_CLOSE_BUTTON     = "关闭"
@@ -423,13 +372,6 @@ CASTING_BAR_BUTTONS = {
   ["TargetBarShowDelay"] = "显示延迟",
   ["TargetBarShowSpellName"] = "显示法术名称",
   ["TargetBarShowSpellRank"] = "显示法术等级",
-  ["FocusBarLocked"] = "锁定",
-  ["FocusBarEnabled"] = "启用",
-  ["FocusBarShowTime"] = "显示时间",
-  ["FocusBarHideBorder"] = "隐藏边框",
-  ["FocusBarShowDelay"] = "显示延迟",
-  ["FocusBarShowSpellName"] = "显示法术名字",
-  ["FocusBarShowSpellRank"] = "显示法术等级",
 }
 
 CASTINGBAR_SLIDER_WIDTH_TEXT            = "宽"
@@ -441,7 +383,6 @@ CASTINGBAR_SLIDER_ALPHA_TEXT            = "背景透明"
 CASTINGBAR_CASTINGBAR_TEXTURE_TEXT      = "施法条材质"
 CASTINGBAR_MIRRORBAR_TEXTURE_TEXT       = "镜像施法条材质"
 CASTINGBAR_TARGETBAR_TEXTURE_TEXT       = "目标施法条材质"
-CASTINGBAR_FOCUSBAR_TEXTURE_TEXT        = "焦点施法条材质"
 CASTINGBAR_ICON_POSITION_TEXT           = "法术图标位置"
 CASTINGBAR_LEFT_TEXT                    = "左"
 CASTINGBAR_RIGHT_TEXT                   = "右"
@@ -469,12 +410,5 @@ CASTINGBAR_COLOR_LABEL = {
   ["TargetBarTimeColor"] = "时间",
   ["TargetBarDelayColor"] = "延迟",
   ["TargetBarFlashBorderColor"] = "边框闪烁",
-  ["FocusBarSpellColor"] = "法术",
-  ["FocusBarChannelColor"] = "通道法术",
-  ["FocusBarSuccessColor"] = "施法成功",
-  ["FocusBarFailedColor"] = "施法失败",
-  ["FocusBarTimeColor"] = "时间",
-  ["FocusBarDelayColor"] = "颜色",
-  ["FocusBarFlashBorderColor"] = "边框闪烁",
 }
 end                  

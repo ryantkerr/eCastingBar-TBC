@@ -38,7 +38,7 @@ local CASTING_BAR_BACKGROUND_FILE = "Interface\\Tooltips\\UI-Tooltip-Background"
 local CASTING_BAR_EDGE_FILE = "Interface\\Tooltips\\UI-Tooltip-Border";
 local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border";
 -- Casting Bar Frame Suffixes
-local frameSuffixes = { "", "TargetBar", "FocusBar" }
+local frameSuffixes = { "", "TargetBar", }
 
 local CASTING_BAR_DEFAULTS = {
   ["Locked"] = 0,
@@ -84,21 +84,6 @@ local CASTING_BAR_DEFAULTS = {
   ["TargetBarFontSize"] = 12,
 	["TargetBarAlpha"] = 100,
   ["TargetBarIconPosition"] = "HIDDEN",
-  ["FocusBarLocked"] = 0,
-  ["FocusBarEnabled"] = 1,
-  ["FocusBarTexture"] = "Perl",
-  ["FocusBarShowTime"] = 1,
-  ["FocusBarHideBorder"] = 0,
-  ["FocusBarShowDelay"] = 1,
-  ["FocusBarWidth"] = CASTING_BAR_WIDTH,
-  ["FocusBarHeight"] = CASTING_BAR_HEIGHT,
-  ["FocusBarLeft"] = CASTING_BAR_LEFT,
-  ["FocusBarBottom"] = 560,
-  ["FocusBarShowSpellName"] = 1,
-  ["FocusBarShowSpellRank"] = 1,
-  ["FocusBarFontSize"] = 12,
-	["FocusBarAlpha"] = 100,
-  ["FocusBarIconPosition"] = "HIDDEN"
 }
 
 local CASTING_BAR_DEFAULT_COLORS = {
@@ -122,13 +107,6 @@ local CASTING_BAR_DEFAULT_COLORS = {
   ["TargetBarFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
   ["TargetBarTimeColor"] = {1.0, 1.0, 1.0, 1},
   ["TargetBarDelayColor"] = {1.0, 0.0, 0.0, 1},
-  ["FocusBarSpellColor"] = {1.0, 0.7, 0.0, 1.0},
-  ["FocusBarChannelColor"] = {0.3, 0.3, 1.0, 1},
-  ["FocusBarSuccessColor"] = {0.0, 1.0, 0.0, 1},
-  ["FocusBarFailedColor"] = {1.0, 0.0, 0.0, 1},
-  ["FocusBarFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
-  ["FocusBarTimeColor"] = {1.0, 1.0, 1.0, 1},
-  ["FocusBarDelayColor"] = {1.0, 0.0, 0.0, 1}
 }
 
 -- Local variables
@@ -520,33 +498,6 @@ function eCastingBarTarget_OnEvent(self, event, ...)
 
 end
 
-function eCastingBarFocus_OnEvent(self, event, ...)
-	local newevent = event;
-	local newarg1 = ...;
-	if( event == "PLAYER_FOCUS_CHANGED") then
-		local nameChannel  = ChannelInfo(self.unit);
-		local nameSpell  = CastingInfo(self.unit);
-		if ( nameChannel ) then
-			newevent = "UNIT_SPELLCAST_CHANNEL_START";
-			newarg1 = "focus";
-		elseif ( nameSpell ) then
-			newevent = "UNIT_SPELLCAST_START";
-			newarg1 = "focus";
-		else
-			self.casting = nil;
-			self.channeling = nil;
-			self:Hide();
-			return;
-		end
-	end
-	if ( UnitIsUnit("player", "focus") ) then
-		return;
-	end
-	eCastingBar_OnEvent(self, newevent, newarg1,  select(2, ...));
-
-end
-
-
 function eCastingBar_ResetSettings()
 	ECB_addChat(CASTINGBAR_RESET)
 	eCastingBar_Saved = {}
@@ -597,7 +548,6 @@ function eCastingBar_LoadVariables()
     -- make the casting bar link to the movable button
 		eCastingBar:SetPoint("TOPLEFT", "eCastingBar_Outline", "TOPLEFT", 0, 0 )
 		eCastingBarTargetBar:SetPoint("TOPLEFT", "eCastingBarTargetBar_Outline", "TOPLEFT", 0, 0 )
-		eCastingBarFocusBar:SetPoint("TOPLEFT", "eCastingBarFocusBar_Outline", "TOPLEFT", 0, 0 )
     
     -- make the mirror casting bar link to the movable button
 		eCastingBarMirror1:SetPoint("TOPLEFT", "eCastingBarMirror_Outline", "TOPLEFT", 0, 0 )
@@ -663,15 +613,8 @@ function setupDefaultConfigFrame()
   eCastingBarTargetBarSelectTexture_Label:SetText(CASTINGBAR_TARGETBAR_TEXTURE_TEXT)
   eCastingBarTargetBarSelectTexture_Setting:SetText(eCastingBar_Saved.TargetBarTexture)
 
-  eCastingBarFocusBarStatusBarText:SetJustifyH(CASTING_BAR_SPELL_JUSTIFY)
-  eCastingBarFocusBarSelectTexture_Label:SetText(CASTINGBAR_FOCUSBAR_TEXTURE_TEXT)
-  eCastingBarFocusBarSelectTexture_Setting:SetText(eCastingBar_Saved.FocusBarTexture)
-
   eCastingBarTargetBarIconPosition_Label:SetText(CASTINGBAR_ICON_POSITION_TEXT)
   eCastingBarTargetBarIconPosition_Setting:SetText(_G["CASTINGBAR_"..eCastingBar_Saved.TargetBarIconPosition.."_TEXT"])
-
-  eCastingBarFocusBarIconPosition_Label:SetText(CASTINGBAR_ICON_POSITION_TEXT)
-  eCastingBarFocusBarIconPosition_Setting:SetText(_G["CASTINGBAR_"..eCastingBar_Saved.FocusBarIconPosition.."_TEXT"])
   
   eCastingBarMirrorSelectTexture_Label:SetText(CASTINGBAR_MIRRORBAR_TEXTURE_TEXT)
   eCastingBarMirrorSelectTexture_Setting:SetText(eCastingBar_Saved.MirrorTexture)
@@ -691,7 +634,7 @@ function setupDefaultConfigFrame()
   end
   
   local slider, sliderText, low, high, width, height
-  local optionTabs = { "", "Mirror", "TargetBar", "FocusBar" }
+  local optionTabs = { "", "Mirror", "TargetBar", }
   
   for index, option in pairs(optionTabs) do
     local slidervalue
@@ -1087,9 +1030,6 @@ function eCastingBar_setColor(colorFrame)
 	elseif colorFrame == "TargetBarSpellColor" or colorFrame == "TargetBarChannelColor" then
 		local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[colorFrame])
   	eCastingBarTargetBarExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
-	elseif colorFrame == "FocusBarSpellColor" or colorFrame == "FocusBarChannelColor" then
-		local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[colorFrame])
-  	eCastingBarFocusBarExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
 	else
 		local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[colorFrame])
   	eCastingBarMirrorExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
