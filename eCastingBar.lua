@@ -1,6 +1,6 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
-CASTING_BAR_MINOR_VERSION = "1";
+CASTING_BAR_MINOR_VERSION = "2";
 CASTING_BAR_REVISION = "0";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
@@ -41,11 +41,11 @@ local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border
 local frameSuffixes = { "", "TargetBar", }
 
 local CASTING_BAR_DEFAULTS = {
-  ["Locked"] = 0,
+  ["Locked"] = 1,
   ["Enabled"] = 1,
   ["Texture"] = "Standard",
   ["ShowTime"] = 1,
-  ["HideBorder"] = 0,
+  ["HideBorder"] = 1,
   ["ShowDelay"] = 1,
   ["Width"] = CASTING_BAR_WIDTH,
   ["Height"] = CASTING_BAR_HEIGHT,
@@ -56,11 +56,11 @@ local CASTING_BAR_DEFAULTS = {
   ["FontSize"] = 12,
   ["Alpha"] = 100,
   ["IconPosition"] = "HIDDEN",
-  ["MirrorLocked"] = 0,
+  ["MirrorLocked"] = 1,
   ["MirrorEnabled"] = 1,
   ["MirrorTexture"] = "Standard",
   ["MirrorShowTime"] = 1,
-  ["MirrorHideBorder"] = 0,
+  ["MirrorHideBorder"] = 1,
   ["MirrorUseFlightTimer"] = 1,
   ["MirrorWidth"] = CASTING_BAR_WIDTH,
   ["MirrorHeight"] = CASTING_BAR_HEIGHT,
@@ -69,11 +69,11 @@ local CASTING_BAR_DEFAULTS = {
   ["MirrorShowTimerLabel"] = 1,
   ["MirrorFontSize"] = 12,
   ["MirrorAlpha"] = 100,
-  ["TargetBarLocked"] = 0,
+  ["TargetBarLocked"] = 1,
   ["TargetBarEnabled"] = 1,
   ["TargetBarTexture"] = "Standard",
   ["TargetBarShowTime"] = 1,
-  ["TargetBarHideBorder"] = 0,
+  ["TargetBarHideBorder"] = 1,
   ["TargetBarShowDelay"] = 1,
   ["TargetBarWidth"] = CASTING_BAR_WIDTH,
   ["TargetBarHeight"] = CASTING_BAR_HEIGHT,
@@ -585,6 +585,12 @@ function setupConfigFrame()
   eCastingBarSaveSettingsButton:SetText(CASTINGBAR_SAVE_BUTTON)
   eCastingBarLoadSettingsButton:SetText(CASTINGBAR_LOAD_BUTTON)
   eCastingBarDeleteSettingsButton:SetText(CASTINGBAR_DELETE_BUTTON)
+
+  -- set all checks
+  for option in pairs(CASTING_BAR_BUTTONS) do
+    local btn = _G["eCastingBar"..option]
+    btn:SetChecked(eCastingBar_Saved[option])
+  end
 end
 
 function setupDefaultConfigFrame()
@@ -626,12 +632,6 @@ function setupDefaultConfigFrame()
 	-- Disable the Load and Delete Buttons on Startup
 	eCastingBarLoadSettingsButton:Disable(); 
 	eCastingBarDeleteSettingsButton:Disable();
-
-  -- set all checks
-  for option in pairs(CASTING_BAR_BUTTONS) do
-    local btn = _G["eCastingBar"..option]
-    btn:SetChecked(eCastingBar_Saved[option])
-  end
   
   local slider, sliderText, low, high, width, height
   local optionTabs = { "", "Mirror", "TargetBar", }
