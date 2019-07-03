@@ -179,7 +179,7 @@
 							<Anchors>
 								<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER">
 									<Offset>
-										<AbsDimension x="0" y="1"/>
+										<AbsDimension x="0" y="0.2"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -190,7 +190,7 @@
 							<Anchors>	
 								<Anchor	point="RIGHT" relativeTo="$parent">
 									<Offset>
-										<AbsDimension x="-10" y="0"/>
+										<AbsDimension x="-10" y="0.2"/>
 									</Offset>
 								</Anchor>
 							</Anchors>

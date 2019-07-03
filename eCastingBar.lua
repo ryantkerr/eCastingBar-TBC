@@ -38,7 +38,7 @@ local CASTING_BAR_BACKGROUND_FILE = "Interface\\Tooltips\\UI-Tooltip-Background"
 local CASTING_BAR_EDGE_FILE = "Interface\\Tooltips\\UI-Tooltip-Border";
 local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border";
 -- Casting Bar Frame Suffixes
-local frameSuffixes = { "", "TargetBar", }
+local frameSuffixes = { "", }
 
 local CASTING_BAR_DEFAULTS = {
   ["Locked"] = 1,
@@ -69,21 +69,6 @@ local CASTING_BAR_DEFAULTS = {
   ["MirrorShowTimerLabel"] = 1,
   ["MirrorFontSize"] = 12,
   ["MirrorAlpha"] = 100,
-  ["TargetBarLocked"] = 1,
-  ["TargetBarEnabled"] = 1,
-  ["TargetBarTexture"] = "Standard",
-  ["TargetBarShowTime"] = 1,
-  ["TargetBarHideBorder"] = 1,
-  ["TargetBarShowDelay"] = 1,
-  ["TargetBarWidth"] = CASTING_BAR_WIDTH,
-  ["TargetBarHeight"] = CASTING_BAR_HEIGHT,
-  ["TargetBarLeft"] = CASTING_BAR_LEFT,
-  ["TargetBarBottom"] = 640,
-  ["TargetBarShowSpellName"] = 1,
-  ["TargetBarShowSpellRank"] = 1,
-  ["TargetBarFontSize"] = 12,
-	["TargetBarAlpha"] = 100,
-  ["TargetBarIconPosition"] = "HIDDEN",
 }
 
 local CASTING_BAR_DEFAULT_COLORS = {
@@ -100,13 +85,6 @@ local CASTING_BAR_DEFAULT_COLORS = {
   ["DelayColor"] = {1.0, 0.0, 0.0, 1},
   ["MirrorTimeColor"] = {1.0, 1.0, 1.0, 1},
   ["MirrorFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
-  ["TargetBarSpellColor"] = {1.0, 0.7, 0.0, 1.0},
-  ["TargetBarChannelColor"] = {0.3, 0.3, 1.0, 1},
-  ["TargetBarSuccessColor"] = {0.0, 1.0, 0.0, 1},
-  ["TargetBarFailedColor"] = {1.0, 0.0, 0.0, 1},
-  ["TargetBarFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
-  ["TargetBarTimeColor"] = {1.0, 1.0, 1.0, 1},
-  ["TargetBarDelayColor"] = {1.0, 0.0, 0.0, 1},
 }
 
 -- Local variables
@@ -472,32 +450,6 @@ function eCastingBar_OnUpdate(self, elapsed)
   end
 end
 
-function eCastingBarTarget_OnEvent(self, event, ...)
-	local newevent = event;
-	local newarg1 = ...;
-	if( newevent == "PLAYER_TARGET_CHANGED") then
-		local nameChannel  = ChannelInfo(self.unit);
-		local nameSpell  = CastingInfo(self.unit);
-		if ( nameChannel ) then
-			newevent = "UNIT_SPELLCAST_CHANNEL_START";
-			newarg1 = "target";
-		elseif ( nameSpell ) then
-			newevent = "UNIT_SPELLCAST_START";
-			newarg1 = "target";
-		else
-			self.casting = nil;
-			self.channeling = nil;
-			self:Hide();
-			return;
-		end
-	end
-	if UnitIsUnit("player", "target") then
-		return;
-	end
-	eCastingBar_OnEvent(self, newevent, newarg1, select(2, ...));
-
-end
-
 function eCastingBar_ResetSettings()
 	ECB_addChat(CASTINGBAR_RESET)
 	eCastingBar_Saved = {}
@@ -547,7 +499,6 @@ function eCastingBar_LoadVariables()
     
     -- make the casting bar link to the movable button
 		eCastingBar:SetPoint("TOPLEFT", "eCastingBar_Outline", "TOPLEFT", 0, 0 )
-		eCastingBarTargetBar:SetPoint("TOPLEFT", "eCastingBarTargetBar_Outline", "TOPLEFT", 0, 0 )
     
     -- make the mirror casting bar link to the movable button
 		eCastingBarMirror1:SetPoint("TOPLEFT", "eCastingBarMirror_Outline", "TOPLEFT", 0, 0 )
@@ -613,14 +564,6 @@ function setupDefaultConfigFrame()
 	end
   local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved.BreathColor)
   eCastingBarMirrorExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
-
-  
-  eCastingBarTargetBarStatusBarText:SetJustifyH(CASTING_BAR_SPELL_JUSTIFY)
-  eCastingBarTargetBarSelectTexture_Label:SetText(CASTINGBAR_TARGETBAR_TEXTURE_TEXT)
-  eCastingBarTargetBarSelectTexture_Setting:SetText(eCastingBar_Saved.TargetBarTexture)
-
-  eCastingBarTargetBarIconPosition_Label:SetText(CASTINGBAR_ICON_POSITION_TEXT)
-  eCastingBarTargetBarIconPosition_Setting:SetText(_G["CASTINGBAR_"..eCastingBar_Saved.TargetBarIconPosition.."_TEXT"])
   
   eCastingBarMirrorSelectTexture_Label:SetText(CASTINGBAR_MIRRORBAR_TEXTURE_TEXT)
   eCastingBarMirrorSelectTexture_Setting:SetText(eCastingBar_Saved.MirrorTexture)
@@ -634,7 +577,7 @@ function setupDefaultConfigFrame()
 	eCastingBarDeleteSettingsButton:Disable();
   
   local slider, sliderText, low, high, width, height
-  local optionTabs = { "", "Mirror", "TargetBar", }
+  local optionTabs = { "", "Mirror", }
   
   for index, option in pairs(optionTabs) do
     local slidervalue
@@ -1027,9 +970,6 @@ function eCastingBar_setColor(colorFrame)
 			local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved.ChannelColor)
   		eCastingBarStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
   	end
-	elseif colorFrame == "TargetBarSpellColor" or colorFrame == "TargetBarChannelColor" then
-		local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[colorFrame])
-  	eCastingBarTargetBarExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
 	else
 		local	Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[colorFrame])
   	eCastingBarMirrorExampleStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
