@@ -14,12 +14,12 @@ First of all I'd just like to mention that I am not the original creator of this
 
 *Curseforge Manual Download Install*
 
-Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
+Unzip and extract `eCastingBarClassic-release\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-release zip folder into your Addons folder will not work.
 
-**Github Download**
+**[Github Releases Page Download](https://github.com/shoestare/eCastingBarClassic/releases)**
 
-Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-master directory into your Addons folder will not work.
-*Rename `eCastingBarClassic-release` to `eCastingBar` in your Addons folder*.
+Unzip and extract `eCastingBarClassic-release\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-release zip folder into your Addons folder will not work.
+*Make sure the eCastingBarClassic folder is named `eCastingBar` in your Addons folder*.
 
 ## Configuration
 
