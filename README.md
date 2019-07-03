@@ -2,7 +2,7 @@
 
 The casting bar addon that replaces the default player spellcasting bar with a customizable replacement. This addon has [been around since Vanilla WoW](https://youtu.be/XM1DLuL5DYI?t=24), and now it's available for Classic WoW 1.13.2.
 
-![eCastingBar Config](https://user-images.githubusercontent.com/52019397/60297046-61661400-98f5-11e9-98ba-ac0e3a753946.png) ![eCastingBar Screen](https://user-images.githubusercontent.com/52019397/59818437-f06d9d80-92f1-11e9-999a-e42c1810747e.png)
+![eCastingBar Config](https://user-images.githubusercontent.com/52019397/60630008-2583f080-9dc6-11e9-8993-817c4fbf7a07.png) ![eCastingBar Screen](https://user-images.githubusercontent.com/52019397/59818437-f06d9d80-92f1-11e9-999a-e42c1810747e.png)
 
 ## About
 
@@ -24,6 +24,5 @@ Unzip and extract `eCastingBarClassic\eCastingBar` into your Addons folder. Putt
 ## Configuration
 
 - Type `/ecb` or `/ecastingbar` to open the config menu.
-- Bar outlines are shown by default and have to be clicked off then on again at least once in order to be fully hidden.
 
 
