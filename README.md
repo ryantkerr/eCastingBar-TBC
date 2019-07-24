@@ -16,7 +16,7 @@ First of all I'd just like to mention that I am not the original creator of this
 
 Unzip and extract `eCastingBarClassic-release\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-release zip folder into your Addons folder will not work.
 
-**[Github Releases Page Download](https://github.com/shoestare/eCastingBarClassic/releases)**
+**[Github Release Page Download](https://github.com/shoestare/eCastingBarClassic/releases)**
 
 Unzip and extract `eCastingBarClassic-release\eCastingBar` into your Addons folder. Putting the eCastingBarClassic-release zip folder into your Addons folder will not work.
 *Make sure the eCastingBarClassic folder is named `eCastingBar` in your Addons folder*.

@@ -156,7 +156,7 @@
           <Anchors>
             <Anchor point="TOP">
               <Offset>
-                <AbsDimension x="2.13" y="-6" />
+                <AbsDimension x="2.93" y="-6" />
               </Offset>
             </Anchor>
           </Anchors>
@@ -168,11 +168,11 @@
     </Layers>
 
 		<Frames>
-			<Button name="eCB_Option_DefaultsButton" inherits="OptionsButtonTemplate">
+			<Button name="eCB_Option_DefaultsButton" inherits="GameMenuButtonTemplate">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="eCB_OptionFrame" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="178" y="16"/>
+							<AbsDimension x="148" y="16"/>
 						</Offset>
 					</Anchor>
 				</Anchors>

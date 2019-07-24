@@ -1,6 +1,6 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
-CASTING_BAR_MINOR_VERSION = "2";
+CASTING_BAR_MINOR_VERSION = "3";
 CASTING_BAR_REVISION = "0";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
@@ -984,6 +984,7 @@ function eCastingBar_setColor(colorFrame)
   end
 end
 
+--I love my girlfriend Elise so so much, this commented line's for her <3
 function eCastingBar_setIcons()
   for index, option in pairs(frameSuffixes) do
   	if (eCastingBar_Saved[option.."IconPosition"] == nil) then 
