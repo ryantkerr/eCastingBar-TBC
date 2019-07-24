@@ -18,7 +18,7 @@ CASTINGBAR_ICON_POSITION = {
 	{ text = CASTINGBAR_RIGHT_TEXT, value = "RIGHT"},
 	{ text = CASTINGBAR_HIDDEN_TEXT, value = "HIDDEN"}
 };
-CASTINGBAR_HEADER = strGreen.."eCastingBar "..strWhite.."Classic "..strYellow.."v"..strYellow..CASTING_BAR_MAJOR_VERSION..strYellow.."."..strYellow..CASTING_BAR_MINOR_VERSION..strYellow.."."..strYellow..CASTING_BAR_REVISION..strWhite;
+CASTINGBAR_HEADER = strGreen.."eCastingBar "..strGreen.."Classic "..strYellow.."v"..strYellow..CASTING_BAR_MAJOR_VERSION..strYellow.."."..strYellow..CASTING_BAR_MINOR_VERSION..strYellow.."."..strYellow..CASTING_BAR_REVISION..strWhite;
 CASTINGBAR_HELP = {
 	strLine1 = strYellow.."--- "..CASTINGBAR_HEADER..strYellow.." --- ",
 	strLine2 = strWhite..strTab..CASTINGBAR_CHAT_C1..strYellow..CASTINGBAR_HELP_STRING..strWhite
