@@ -137,6 +137,18 @@
           </Anchors>
           <TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
         </Texture>
+				<Texture file="Interface\DialogFrame\UI-DialogBox-Corner">
+          <Size>
+            <AbsDimension x="32" y="32" />
+          </Size>
+          <Anchors>
+            <Anchor point="TOP">
+              <Offset>
+                <AbsDimension x="199" y="-5" />
+              </Offset>
+            </Anchor>
+          </Anchors>
+        </Texture>
         <FontString inherits="GameFontNormal" text="ECASTINGBAR_TITLE">
           <Size>
             <AbsDimension x="140" y="0" />
@@ -144,7 +156,7 @@
           <Anchors>
             <Anchor point="TOP">
               <Offset>
-                <AbsDimension x="3.33" y="-6" />
+                <AbsDimension x="2.13" y="-6" />
               </Offset>
             </Anchor>
           </Anchors>
@@ -160,7 +172,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="eCB_OptionFrame" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="20" y="15"/>
+							<AbsDimension x="178" y="16"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -170,11 +182,11 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="eCB_Option_CloseButton" inherits="OptionsButtonTemplate">
+			<Button name="eCB_Option_CloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="eCB_OptionFrame" relativePoint="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-110" y="15"/>
+							<AbsDimension x="-31" y="522"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
