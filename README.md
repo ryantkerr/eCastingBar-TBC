@@ -1,4 +1,4 @@
-# eCastingBarClassic
+# eCastingBar Classic
 
 The casting bar addon that replaces the default player spellcasting bar with a customizable replacement. This addon has [been around since Vanilla WoW](https://youtu.be/XM1DLuL5DYI?t=24), and now it's available for Classic WoW 1.13.2.
 
