@@ -227,10 +227,10 @@ function eCastingBar_setAnchor(self, subframe, xoffset, yoffset)
 end
 
 function eCastingBar_Menu_TimeOut(self, elapsed)
-	if (self.timer) then
-		self.timer = self.timer - elapsed
-		if (self.timer < 0) then
-			self.timer = nil
+	if (self.elapsed) then
+		self.elapsed = self.elapsed - elapsed
+		if (self.elapsed > 0) then
+			self.elapsed = 0.125
 			self:Hide()
 		end
 	end
