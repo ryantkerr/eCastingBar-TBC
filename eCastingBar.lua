@@ -23,7 +23,7 @@ CASTINGBAR_HELP = {
 	strLine1 = strYellow.."--- "..CASTINGBAR_HEADER..strYellow.." --- ",
 	strLine2 = strWhite..strTab..CASTINGBAR_CHAT_C1..strYellow..CASTINGBAR_HELP_STRING..strWhite
 };
-
+MIRROR_CASTING_BAR_HEIGHT = 26; 
 -- Global variables
 eCastingBar_Saved = {};
 eCastingBar_Resolution = nil;
@@ -41,7 +41,7 @@ local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border
 local frameSuffixes = { "", }
 
 local CASTING_BAR_DEFAULTS = {
-  ["Locked"] = 1,
+  ["Locked"] = 0,
   ["Enabled"] = 1,
   ["Texture"] = "Perl",
   ["ShowTime"] = 1,
@@ -56,14 +56,14 @@ local CASTING_BAR_DEFAULTS = {
   ["FontSize"] = 12,
   ["Alpha"] = 100,
   ["IconPosition"] = "HIDDEN",
-  ["MirrorLocked"] = 1,
+  ["MirrorLocked"] = 0,
   ["MirrorEnabled"] = 1,
   ["MirrorTexture"] = "Perl",
   ["MirrorShowTime"] = 1,
   ["MirrorHideBorder"] = 1,
   ["MirrorUseFlightTimer"] = 1,
   ["MirrorWidth"] = CASTING_BAR_WIDTH,
-  ["MirrorHeight"] = CASTING_BAR_HEIGHT,
+  ["MirrorHeight"] = MIRROR_CASTING_BAR_HEIGHT,
   ["MirrorLeft"] = CASTING_BAR_LEFT,
   ["MirrorBottom"] = 600,
   ["MirrorShowTimerLabel"] = 1,
@@ -461,7 +461,25 @@ function eCastingBar_ResetSettings()
 	for color in pairs(CASTING_BAR_DEFAULT_COLORS) do
 		eCastingBar_Saved[color] = CASTING_BAR_DEFAULT_COLORS[color]
 	end
-	setup()
+  setup()
+  
+  for option in pairs(CASTING_BAR_BUTTONS) do
+    local btn = _G["eCastingBar"..option]
+    btn:SetChecked(eCastingBar_Saved[option])
+
+    if (option == "HideBorder") then
+      btn:SetChecked(nil)
+    end
+    if (option == "MirrorHideBorder") then
+      btn:SetChecked(nil)
+    end
+    if (option == "Locked") then
+      btn:SetChecked(nil)
+    end
+    if (option == "MirrorLocked") then
+      btn:SetChecked(nil)
+    end
+  end
 end
 
 function eCastingBar_CheckSettings()
@@ -476,7 +494,19 @@ function eCastingBar_CheckSettings()
 		if (eCastingBar_Saved[color] == nil) then
 			eCastingBar_Saved[color] = CASTING_BAR_DEFAULT_COLORS[color]
 		end
-	end
+  end
+  
+  for option in pairs(CASTING_BAR_BUTTONS) do
+    local btn = _G["eCastingBar"..option]
+    btn:SetChecked(eCastingBar_Saved[option])
+
+    if (option == "HideBorder") then
+      btn:SetChecked(nil)
+    end
+    if (option == "MirrorHideBorder") then
+      btn:SetChecked(nil)
+    end
+  end
 end
 
 function setup()

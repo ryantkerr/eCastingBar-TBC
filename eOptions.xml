@@ -107,7 +107,7 @@
 			</OnEvent>
 			<OnShow>
 				eCastingBarConfig_OnShow()
-				PlaySound(SOUNDKIT.IG_MAINMENU_OPEN)
+				PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
 			</OnShow>
 			<OnHide>
 				eCastingBar_DropMenu:Hide()
