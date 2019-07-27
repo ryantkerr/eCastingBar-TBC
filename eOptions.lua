@@ -305,4 +305,5 @@ function eCastingBar_Menu_OnClick(self)
 		eCastingBar_Saved.IconPosition = self.value
 		eCastingBar_setIcons();
 	end
+	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end

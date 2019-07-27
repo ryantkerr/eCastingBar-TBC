@@ -1,12 +1,12 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
-CASTING_BAR_MINOR_VERSION = "3";
+CASTING_BAR_MINOR_VERSION = "4";
 CASTING_BAR_REVISION = "0";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
 CASTING_BAR_HOLD_TIME = 1;
 CASTING_BAR_WIDTH = 264;
-CASTING_BAR_HEIGHT = 30;
+CASTING_BAR_HEIGHT = 32;
 CASTING_BAR_LEFT = (GetScreenWidth()-CASTING_BAR_WIDTH)/2
 CASTING_BAR_SLIDER_WIDTH_MIN = 100;
 CASTING_BAR_SLIDER_WIDTH_MAX = 2000;
@@ -33,7 +33,7 @@ eCastingBar_MENU_SAVEDSETTINGS = nil;
 eCastingBar_SETTINGS_INDEX = "";
 
 -- Local Constants
-local CASTING_BAR_COLOR_TEXTURE = "Interface\\AddOns\\eCastingBar\\Textures\\RoundedLightSample.tga";
+local CASTING_BAR_COLOR_TEXTURE = "Interface\\TargetingFrame\\UI-StatusBar-Glow";
 local CASTING_BAR_BACKGROUND_FILE = "Interface\\Tooltips\\UI-Tooltip-Background";
 local CASTING_BAR_EDGE_FILE = "Interface\\Tooltips\\UI-Tooltip-Border";
 local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border";
@@ -43,7 +43,7 @@ local frameSuffixes = { "", }
 local CASTING_BAR_DEFAULTS = {
   ["Locked"] = 1,
   ["Enabled"] = 1,
-  ["Texture"] = "Standard",
+  ["Texture"] = "Perl",
   ["ShowTime"] = 1,
   ["HideBorder"] = 1,
   ["ShowDelay"] = 1,
@@ -58,7 +58,7 @@ local CASTING_BAR_DEFAULTS = {
   ["IconPosition"] = "HIDDEN",
   ["MirrorLocked"] = 1,
   ["MirrorEnabled"] = 1,
-  ["MirrorTexture"] = "Standard",
+  ["MirrorTexture"] = "Perl",
   ["MirrorShowTime"] = 1,
   ["MirrorHideBorder"] = 1,
   ["MirrorUseFlightTimer"] = 1,
