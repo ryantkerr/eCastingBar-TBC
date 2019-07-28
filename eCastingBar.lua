@@ -45,7 +45,7 @@ local CASTING_BAR_DEFAULTS = {
   ["Enabled"] = 1,
   ["Texture"] = "Perl",
   ["ShowTime"] = 1,
-  ["HideBorder"] = 1,
+  ["HideBorder"] = 0,
   ["ShowDelay"] = 1,
   ["Width"] = CASTING_BAR_WIDTH,
   ["Height"] = CASTING_BAR_HEIGHT,
@@ -60,7 +60,7 @@ local CASTING_BAR_DEFAULTS = {
   ["MirrorEnabled"] = 1,
   ["MirrorTexture"] = "Perl",
   ["MirrorShowTime"] = 1,
-  ["MirrorHideBorder"] = 1,
+  ["MirrorHideBorder"] = 0,
   ["MirrorUseFlightTimer"] = 1,
   ["MirrorWidth"] = CASTING_BAR_WIDTH,
   ["MirrorHeight"] = MIRROR_CASTING_BAR_HEIGHT,
@@ -506,6 +506,12 @@ function eCastingBar_CheckSettings()
     if (option == "MirrorHideBorder") then
       btn:SetChecked(nil)
     end
+    if (option == "Locked") then
+      btn:SetChecked(nil)
+    end
+    if (option == "MirrorLocked") then
+      btn:SetChecked(nil)
+    end
   end
 end
 
@@ -566,12 +572,6 @@ function setupConfigFrame()
   eCastingBarSaveSettingsButton:SetText(CASTINGBAR_SAVE_BUTTON)
   eCastingBarLoadSettingsButton:SetText(CASTINGBAR_LOAD_BUTTON)
   eCastingBarDeleteSettingsButton:SetText(CASTINGBAR_DELETE_BUTTON)
-
-  -- set all checks
-  for option in pairs(CASTING_BAR_BUTTONS) do
-    local btn = _G["eCastingBar"..option]
-    btn:SetChecked(eCastingBar_Saved[option])
-  end
 end
 
 function setupDefaultConfigFrame()

@@ -225,14 +225,6 @@
 
 	
 	<Frame name="eCastingBarMirror_Outline" movable="true" frameStrata="MEDIUM" enableMouse="true" parent="UIParent">
-		<Scripts>
-			<OnMouseDown>
-				eCastingBarMirror_MouseDown( button );
-			</OnMouseDown>			
-			<OnMouseUp>
-				eCastingBarMirror_MouseUp( button );
-			</OnMouseUp>	
-		</Scripts>
 		<Size>
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
@@ -278,6 +270,12 @@
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 			</OnLoad>
+			<OnMouseDown>
+				eCastingBarMirror_MouseDown( button, "eCastingBarMirror_Outline", "" );
+			</OnMouseDown>			
+			<OnMouseUp>
+				eCastingBarMirror_MouseUp( button, "eCastingBarMirror_Outline", "" );
+			</OnMouseUp>	
 		</Scripts>
 	</Frame>
 
