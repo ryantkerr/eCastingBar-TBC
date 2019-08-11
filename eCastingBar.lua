@@ -175,8 +175,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		end
 		self.startTime = (startTime/1000)
 		self.maxValue = (endTime/1000)
-		barStatusBar:SetMinMaxValues( self.startTime, self.maxValue )
-		barStatusBar:SetValue( self.startTime )
+		barStatusBar:SetMinMaxValues( 0, 1 )
+		barStatusBar:SetValue( 0 )
 	  -- set the text to the spell name
 	  if ( eCastingBar_Saved[frame.."ShowSpellName"] == 1 ) then
 		  barText:SetText( spellName )
@@ -217,7 +217,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			barSpark:Hide();
 			barFlash:SetAlpha(0.0);
 			barFlash:Show();
-			barStatusBar:SetValue(self.maxValue);
+			barStatusBar:SetValue(1);
 			if ( newevent == "UNIT_SPELLCAST_STOP" ) then
   				local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."SuccessColor"])
   				barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
@@ -234,7 +234,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	elseif( newevent == "UNIT_SPELLCAST_INTERRUPTED" or (newevent == "UNIT_SPELLCAST_FAILED" and spellName ~= barText.spellName) ) then
 
 		if ( self:IsShown() and self.casting and not self.fadeOut ) then
-			barStatusBar:SetValue( self.maxValue )
+			barStatusBar:SetValue( 1 )
 	    local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."FailedColor"])
 	    barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
 			barSpark:Hide()
@@ -261,7 +261,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			end
 			self.startTime = (startTime/1000)
 			self.maxValue = (endTime/1000)
-			barStatusBar:SetMinMaxValues( self.startTime, self.maxValue )
+			barStatusBar:SetMinMaxValues( 0, 1 )
 	    if self.delay == nil then
   	  	self.delay = 0
     	end
@@ -290,8 +290,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.startTime = (startTime/1000)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
-		barStatusBar:SetMinMaxValues( self.startTime, self.endTime )
-		barStatusBar:SetValue( endTime - ( GetTime() - (startTime/1000) ) )
+		barStatusBar:SetMinMaxValues( 0, 1 )
+		barStatusBar:SetValue( (GetTime - startTime) / (endTime - startTime) )
 		barSpark:Show()
 		if ( barIcon and eCastingBar_Saved[frame.."IconPosition"] ~= "HIDDEN") then
 			barIcon:SetTexture(texture);
@@ -329,7 +329,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			self.startTime = startTime / 1000;
 			self.endTime = endTime / 1000;
 			self.maxValue = self.startTime;
-			barStatusBar:SetMinMaxValues(self.startTime, self.endTime);			
+			barStatusBar:SetMinMaxValues(0, 1);			
 		end
 	end
 end
@@ -349,7 +349,7 @@ function eCastingBar_OnUpdate(self, elapsed)
     	intCurrentTime = self.maxValue
     end
  		if ( intCurrentTime == self.maxValue ) then
-			barStatusBar:SetValue(self.maxValue);
+			barStatusBar:SetValue(1);
 			barTexture:SetTexCoord(0,1,0,1);
 		  local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."SuccessColor"])
 			barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
@@ -360,10 +360,11 @@ function eCastingBar_OnUpdate(self, elapsed)
 			self.channeling = nil;
 			return;
 		end
-    barTexture:SetTexCoord(0,( intCurrentTime - self.startTime ) / ( self.maxValue - self.startTime ), 0, 1) 
-    barStatusBar:SetValue( intCurrentTime )
+	local progress = ( intCurrentTime - self.startTime ) / ( self.maxValue - self.startTime );
+    barTexture:SetTexCoord(0, progress, 0, 1) 
+    barStatusBar:SetValue( progress )
     barFlash:Hide()
-    local sparkPosition = ( ( intCurrentTime - self.startTime ) / ( self.maxValue - self.startTime ) ) * barStatusBar:GetWidth()
+    local sparkPosition = ( progress ) * barStatusBar:GetWidth()
     if( sparkPosition < 0 ) then
 		
       sparkPosition = 0	
@@ -397,10 +398,11 @@ function eCastingBar_OnUpdate(self, elapsed)
 			return;
 		end
     local intBarValue = self.startTime + ( self.endTime - intTimeLeft )
-    barTexture:SetTexCoord(0,( intBarValue - self.startTime ) / ( self.endTime - self.startTime ), 0, 1) 
-    barStatusBar:SetValue( intBarValue )
+    local intBarValueProgress = ( intBarValue - self.startTime ) / ( self.endTime - self.startTime );
+    barTexture:SetTexCoord(0, intBarValueProgress, 0, 1) 
+    barStatusBar:SetValue( intBarValueProgress )
     barFlash:Hide()
-    local sparkPosition = ( ( intBarValue - self.startTime ) / ( self.endTime - self.startTime ) ) * _G["eCastingBar"..frame.."Background"]:GetWidth()
+    local sparkPosition = ( intBarValueProgress ) * _G["eCastingBar"..frame.."Background"]:GetWidth()
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
     if (eCastingBar_Saved[frame.."ShowTime"] == 1) then    	
       local timeLeft = math.max( _G["eCastingBar"..frame].endTime - intTimeLeft, 0.0 )
