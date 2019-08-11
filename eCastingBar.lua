@@ -231,7 +231,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			self.holdTime = 0
 		end
 
-	elseif( newevent == "UNIT_SPELLCAST_FAILED" or newevent == "UNIT_SPELLCAST_INTERRUPTED" ) then
+	elseif( newevent == "UNIT_SPELLCAST_INTERRUPTED" or (newevent == "UNIT_SPELLCAST_FAILED" and spellName ~= barText.spellName) ) then
 
 		if ( self:IsShown() and self.casting and not self.fadeOut ) then
 			barStatusBar:SetValue( self.maxValue )
