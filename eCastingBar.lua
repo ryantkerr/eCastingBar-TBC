@@ -291,7 +291,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
 		barStatusBar:SetMinMaxValues( 0, 1 )
-		barStatusBar:SetValue( (GetTime - startTime) / (endTime - startTime) )
+		barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
 		barSpark:Show()
 		if ( barIcon and eCastingBar_Saved[frame.."IconPosition"] ~= "HIDDEN") then
 			barIcon:SetTexture(texture);
