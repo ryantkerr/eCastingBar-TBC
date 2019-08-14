@@ -39,6 +39,7 @@ local CASTING_BAR_EDGE_FILE = "Interface\\Tooltips\\UI-Tooltip-Border";
 local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border";
 -- Casting Bar Frame Suffixes
 local frameSuffixes = { "", }
+local castSendTime
 
 local CASTING_BAR_DEFAULTS = {
   ["Locked"] = 0,
@@ -122,6 +123,7 @@ function eCastingBar_OnLoad(self, unit, frame)
 	self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_START");
 	self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_UPDATE");
 	self:RegisterEvent("UNIT_SPELLCAST_CHANNEL_STOP");
+	self:RegisterEvent("CURRENT_SPELL_CAST_CHANGED");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
 
 	self.unit = unit;
@@ -139,6 +141,14 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	local newarg1 = ...;
 
 	local unit = self.unit;
+	
+	local delay;
+
+	if(newevent == "CURRENT_SPELL_CAST_CHANGED") then
+		castSendTime = GetTime()
+	elseif(castSendTime) then
+		delay = GetTime() - castSendTime
+	end
 
 	if newevent == "PLAYER_ENTERING_WORLD" then
 		self:Hide();
