@@ -141,13 +141,13 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	local newarg1 = ...;
 
 	local unit = self.unit;
-	
-	local delay;
+
+	local lag;
 
 	if(newevent == "CURRENT_SPELL_CAST_CHANGED") then
 		castSendTime = GetTime()
 	elseif(castSendTime) then
-		delay = GetTime() - castSendTime
+		lag = GetTime() - castSendTime
 	end
 
 	if newevent == "PLAYER_ENTERING_WORLD" then
