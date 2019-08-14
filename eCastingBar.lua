@@ -146,8 +146,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
 
 	if(newevent == "CURRENT_SPELL_CAST_CHANGED") then
 		castSendTime = GetTime()
-	elseif(castSendTime) then
-		lag = GetTime() - castSendTime
+	elseif(castSendTime and (newevent == "UNIT_SPELLCAST_START" or newevent == "UNIT_SPELLCAST_CHANNEL_START")) then
+		lag = math.max(GetTime() - castSendTime, 0)
 	end
 
 	if newevent == "PLAYER_ENTERING_WORLD" then
