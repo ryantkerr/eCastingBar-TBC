@@ -381,7 +381,7 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
-      barTime:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) )
+      barTime:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) .. " / " ..string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0)))
     else
       barTime:SetText("")
     end
