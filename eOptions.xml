@@ -338,7 +338,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-    					<CheckButton name="eCastingBarShowDelay" inherits="eCastingBarCheckButtonTemplate">
+    					<CheckButton name="eCastingBarShowTimeQuart" inherits="eCastingBarCheckButtonTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTime" relativePoint="BOTTOMLEFT">
     								<Offset>
@@ -348,7 +348,7 @@
     						</Anchors>
     						<Scripts>
     							<OnLoad>
-    								self.index = "ShowDelay"
+    								self.index = "ShowTimeQuart"
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
@@ -366,7 +366,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-    					<CheckButton name="eCastingBarShowSpellRank" inherits="eCastingBarCheckButtonTemplate">
+    					<CheckButton name="eCastingBarShowLatency" inherits="eCastingBarCheckButtonTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowSpellName" relativePoint="BOTTOMLEFT">
     								<Offset>
@@ -376,7 +376,7 @@
     						</Anchors>
     						<Scripts>
     							<OnLoad>
-    								self.index = "ShowSpellRank"
+    								self.index = "ShowLatency"
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
@@ -385,7 +385,7 @@
 									<AbsDimension x="70" y="24"/>
 								</Size>
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="eCastingBarShowDelay" relativePoint="BOTTOMLEFT">
+									<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTimeQuart" relativePoint="BOTTOMLEFT">
 										<Offset>
 											<AbsDimension x="2" y="-2"/>
 										</Offset>
@@ -404,7 +404,7 @@
     							<AbsDimension x="120" y="16"/>
     						</Size>
     						<Anchors>
-    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowSpellRank" relativePoint="BOTTOMLEFT">
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowLatency" relativePoint="BOTTOMLEFT">
     								<Offset>
     									<AbsDimension x="0" y="-25" />
     								</Offset>
@@ -421,7 +421,7 @@
     							<AbsDimension x="120" y="16"/>
     						</Size>
     						<Anchors>
-    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowDelay" relativePoint="BOTTOMLEFT">
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTimeQuart" relativePoint="BOTTOMLEFT">
     								<Offset>
     									<AbsDimension x="0" y="-57" />
     								</Offset>
@@ -810,7 +810,7 @@
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnDelayColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnLagColor" inherits="eCastingBarButtonTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnFailedColor">
     								<Offset>
@@ -833,7 +833,7 @@
     						</Layers>
     						<Scripts>
     							<OnLoad>
-    								self.objindex = "DelayColor"
+    								self.objindex = "LagColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
@@ -952,12 +952,12 @@
     							</Layer>
     						</Layers>
     					</Frame>
-    					<Frame name="lblDelayColor">
+    					<Frame name="lblLagColor">
     						<Size>
     							<AbsDimension x="80" y="18" />
     						</Size>
     						<Anchors>
-    							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="btnDelayColor">
+    							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="btnLagColor">
     								<Offset>
     									<AbsDimension x="0" y="-5" />
     								</Offset>
