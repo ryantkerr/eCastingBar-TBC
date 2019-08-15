@@ -47,13 +47,13 @@ local CASTING_BAR_DEFAULTS = {
   ["Texture"] = "Perl",
   ["ShowTime"] = 1,
   ["HideBorder"] = 0,
-  ["ShowTimeQuart"] = 1,
+  ["ShowDelay"] = 1,
   ["Width"] = CASTING_BAR_WIDTH,
   ["Height"] = CASTING_BAR_HEIGHT,
   ["Left"] = CASTING_BAR_LEFT,
   ["Bottom"] = 180,
   ["ShowSpellName"] = 1,
-  ["ShowLatency"] = 1,
+  ["ShowSpellRank"] = 1,
   ["FontSize"] = 12,
   ["Alpha"] = 100,
   ["IconPosition"] = "HIDDEN",
@@ -83,7 +83,7 @@ local CASTING_BAR_DEFAULT_COLORS = {
   ["BreathColor"] = {0.0, 0.5, 1.0, 1},
   ["FlightColor"] = {.26, 0.93, 1.0, 1.0},
   ["TimeColor"] = {1.0, 1.0, 1.0, 1},
-  ["LagColor"] = {1.0, 0.0, 0.0, 0.6},
+  ["DelayColor"] = {1.0, 0.0, 0.0, 1},
   ["MirrorTimeColor"] = {1.0, 1.0, 1.0, 1},
   ["MirrorFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
 }
@@ -189,15 +189,10 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		barStatusBar:SetMinMaxValues( 0, 1 )
 		barStatusBar:SetValue( 0 )
 
-    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-		  lagBar:SetMinMaxValues(0,1)
-		  lagBar:SetValue(1-lag/(endTime-startTime))
-		  lagText:SetTextColor(0.7,0.7,0.7,0.8)
-      lagText:SetText(string.format("%ims", lag))
-    else
-      lagText:SetText( "")
-      lagBar:SetValue(0)
-    end
+		lagBar:SetMinMaxValues(0,1)
+		lagBar:SetValue(1-lag/(endTime-startTime))
+		lagText:SetTextColor(0.7,0.7,0.7,0.8)
+		lagText:SetText(string.format("%ims", lag))
 
 	  -- set the text to the spell name
 	  if ( eCastingBar_Saved[frame.."ShowSpellName"] == 1 ) then
@@ -314,20 +309,12 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.startTime = (startTime/1000)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
-    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-    lagText:SetTextColor(0.7,0.7,0.7,0.8)
-    lagText:SetText(string.format("%ims", lag))
-    else
-      lagText:SetText("")
-    end
+		lagText:SetTextColor(0.7,0.7,0.7,0.8)
+		lagText:SetText(string.format("%ims", lag))
 		barStatusBar:SetMinMaxValues( 0, 1 )
 		barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
-    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-      lagBar:SetMinMaxValues(0,1)
-      lagBar:SetValue(lag/(endTime-startTime))
-    else
-      lagBar:SetValue(0)
-    end
+		lagBar:SetMinMaxValues(0,1)
+		lagBar:SetValue(lag/(endTime-startTime))
 		barSpark:Show()
 		if ( barIcon and eCastingBar_Saved[frame.."IconPosition"] ~= "HIDDEN") then
 			barIcon:SetTexture(texture);
@@ -378,7 +365,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local lagBar = _G["eCastingBar"..frame.."LagBar"];
 	local barSpark = _G["eCastingBar"..frame.."StatusBarSpark"];
 	local barTime = _G["eCastingBar"..frame.."StatusBar_Time"];
-	local barTimeQuart = _G["eCastingBar"..frame.."StatusBar_TimeQuart"];
+	local barDelay = _G["eCastingBar"..frame.."StatusBar_Delay"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
 	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
   if( self.casting ) then    
@@ -412,14 +399,14 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
-      barTime:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) )
+      barTime:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) .. " / " ..string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0)))
     else
       barTime:SetText("")
     end
-    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 ) and ( eCastingBar_Saved[frame.."ShowTime"] == 0)) then
-	    barTimeQuart:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) .. " / " ..string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0)))
+    if (( eCastingBar_Saved[frame.."ShowDelay"] == 1 ) and ( self.delay ~= 0)) then  
+	    barDelay:SetText("+"..string.format( "%.1f", self.delay ) )
     else
-      barTimeQuart:SetText("")
+      barDelay:SetText("")
     end
   -- no, we channeling?	
   elseif ( self.channeling ) then
@@ -466,10 +453,10 @@ function eCastingBar_OnUpdate(self, elapsed)
     else
       barTime:SetText("")
     end
-    if ((eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) and (self.delay ~= 0)) then
-      barTimeQuart:SetText("+"..string.format( "%.1f", self.delay ) )
+    if ((eCastingBar_Saved[frame.."ShowDelay"] == 1) and (self.delay ~= 0)) then
+      barDelay:SetText("+"..string.format( "%.1f", self.delay ) )
     else
-      barTimeQuart:SetText("")
+      barDelay:SetText("")
     end
   elseif( GetTime() < self.holdTime ) then
     return
@@ -562,8 +549,8 @@ function setup()
 	eCastingBar_checkEnabled()
 	eCastingBar_checkLocked()
 	eCastingBar_checkBorders()
-  eCastingBar_checkTimeColors()
-  eCastingBar_setLagColor()
+	eCastingBar_checkTimeColors()
+	eCastingBar_setDelayColor()
 	eCastingBar_SetSize()
 	eCastingBar_checkFlashBorderColors()
 	eCastingBar_checkTextures()
@@ -851,12 +838,12 @@ function eCastingBarGeneral_MouseDown( strButton, frmFrame, frameType )
 	end
 end
 
-function eCastingBar_getShowTimeQuart()
-	return eCastingBar_Saved.ShowTimeQuart
+function eCastingBar_getShowDelay()
+	return eCastingBar_Saved.ShowDelay
 end
 
-function eCastingBar_setShowTimeQuart( intShowTimeQuart )
-	eCastingBar_Saved.ShowTimeQuart = intShowTimeQuart
+function eCastingBar_setShowDelay( intShowDelay )
+	eCastingBar_Saved.ShowDelay = intShowDelay
 end
 
 function eCastingBar_checkBorders()
@@ -1095,18 +1082,15 @@ function eCastingBar_checkTimeColors()
   for index = 1, MIRRORTIMER_NUMTIMERS, 1 do
     _G["eCastingBarMirror"..index.."StatusBar_Time"]:SetTextColor(Red,Green,Blue, Alpha )
   end
+end
+
+function eCastingBar_setDelayColor()
   for index, option in pairs(frameSuffixes) do
-    local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."TimeColor"])
-    _G["eCastingBar"..option.."StatusBar_TimeQuart"]:SetTextColor(Red,Green,Blue, Alpha )
+    local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."DelayColor"])
+    _G["eCastingBar"..option.."StatusBar_Delay"]:SetTextColor(Red,Green,Blue, Alpha )
   end
 end
 
-function eCastingBar_setLagColor()
-  for index, option in pairs(frameSuffixes) do
-    local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."LagColor"])
-    _G["eCastingBar"..option.."LagBar"]:SetStatusBarColor(Red,Green,Blue, Alpha )
-  end
-end
 --[[ sets up the flash to look cool ]]--
 
 --(thanks goes to kaitlin for the code used while resting). 

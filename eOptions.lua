@@ -117,8 +117,8 @@ function eCastingBar_ColorPicker_ColorChanged()
       eCastingBar_checkFlashBorderColors()
     elseif (ColorPickerFrame.objindex == "TimeColor" or ColorPickerFrame.objindex == "TargetBarTimeColor" or ColorPickerFrame.objindex == "MirrorTimeColor") then
     	eCastingBar_checkTimeColors()
-    elseif (ColorPickerFrame.objindex == "LagColor" or ColorPickerFrame.objindex == "TargetBarDelayColor") then
-    	eCastingBar_setLagColor()
+    elseif (ColorPickerFrame.objindex == "DelayColor" or ColorPickerFrame.objindex == "TargetBarDelayColor") then
+    	eCastingBar_setDelayColor()
     elseif (ColorPickerFrame.objindex == "SpellColor" 
     	or ColorPickerFrame.objindex == "ChannelColor" 
     	or ColorPickerFrame.objindex == "FeignDeathColor"

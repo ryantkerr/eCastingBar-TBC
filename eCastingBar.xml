@@ -236,11 +236,11 @@
 								</Anchor>
 							</Anchors>
 						</FontString>
-						<FontString	name="$parent_TimeQuart" inherits="eCastingBarFont" justifyV="CENTER" justifyH="LEFT">
+						<FontString	name="$parent_Delay" inherits="eCastingBarFont" justifyV="CENTER" justifyH="LEFT">
 							<Anchors>	
 								<Anchor	point="TOPRIGHT" relativeTo="$parent">
 									<Offset>
-										<AbsDimension x="-10" y="-5.2"/>
+										<AbsDimension x="-10" y="20"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
