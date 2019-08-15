@@ -1,7 +1,7 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
 CASTING_BAR_MINOR_VERSION = "4";
-CASTING_BAR_REVISION = "2";
+CASTING_BAR_REVISION = "0";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
 CASTING_BAR_HOLD_TIME = 1;
@@ -133,8 +133,6 @@ function eCastingBar_OnLoad(self, unit, frame)
 	self.holdTime = 0;
 end
 
-
-
 --[[ Handles all the mods' events. ]]--
 
 function eCastingBar_OnEvent(self, newevent, ...)
@@ -147,7 +145,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	if(newevent == "CURRENT_SPELL_CAST_CHANGED") then
 		castSendTime = GetTime()
 	elseif(castSendTime and (newevent == "UNIT_SPELLCAST_START" or newevent == "UNIT_SPELLCAST_CHANNEL_START")) then
-		lag = math.max(GetTime() - castSendTime, 0)
+		lag = math.max(GetTime() - castSendTime, 0)*1000
 	end
 
 	if newevent == "PLAYER_ENTERING_WORLD" then
@@ -170,10 +168,13 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	local barFlash = _G[name.."Flash"]
 	local barStatusBar = _G[name.."StatusBar"];
 	local barSpark = _G[name.."StatusBarSpark"];
-	local barText = _G[name.."StatusBarText"]
+	local barText = _G[name.."StatusBarText"];
+	local lagText = _G[name.."LagBarText"];
+	local lagBar = _G[name.."LagBar"];
 	local frame = self.frame
 	if( newevent == "UNIT_SPELLCAST_START" ) then
 		local spellName, displayName, texture, startTime, endTime, isTradeSkill, castID, notInterruptible = CastingInfo(unit)
+
 		if ( not spellName ) then
 			self:Hide();
 			return;
@@ -187,6 +188,12 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.maxValue = (endTime/1000)
 		barStatusBar:SetMinMaxValues( 0, 1 )
 		barStatusBar:SetValue( 0 )
+
+		lagBar:SetMinMaxValues(0,1)
+		lagBar:SetValue(1-lag/(endTime-startTime))
+		lagText:SetTextColor(0.7,0.7,0.7,0.8)
+		lagText:SetText(string.format("%ims", lag))
+
 	  -- set the text to the spell name
 	  if ( eCastingBar_Saved[frame.."ShowSpellName"] == 1 ) then
 		  barText:SetText( spellName )
@@ -228,6 +235,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			barFlash:SetAlpha(0.0);
 			barFlash:Show();
 			barStatusBar:SetValue(1);
+			lagText:SetText("")
 			if ( newevent == "UNIT_SPELLCAST_STOP" ) then
   				local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."SuccessColor"])
   				barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
@@ -258,6 +266,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			self.delay = 0
 			self.fadeOut = 1
 			self.holdTime = GetTime() + CASTING_BAR_HOLD_TIME
+			lagText:SetText("")
 		end
     
 	elseif( newevent == "UNIT_SPELLCAST_DELAYED" ) then
@@ -300,8 +309,12 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.startTime = (startTime/1000)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
+		lagText:SetTextColor(0.7,0.7,0.7,0.8)
+		lagText:SetText(string.format("%ims", lag))
 		barStatusBar:SetMinMaxValues( 0, 1 )
 		barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
+		lagBar:SetMinMaxValues(0,1)
+		lagBar:SetValue(lag/(endTime-startTime))
 		barSpark:Show()
 		if ( barIcon and eCastingBar_Saved[frame.."IconPosition"] ~= "HIDDEN") then
 			barIcon:SetTexture(texture);
@@ -349,10 +362,12 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local bar = _G["eCastingBar"..frame]
 	local barFlash = _G["eCastingBar"..frame.."Flash"]
 	local barStatusBar = _G["eCastingBar"..frame.."StatusBar"];
+	local lagBar = _G["eCastingBar"..frame.."LagBar"];
 	local barSpark = _G["eCastingBar"..frame.."StatusBarSpark"];
 	local barTime = _G["eCastingBar"..frame.."StatusBar_Time"];
 	local barDelay = _G["eCastingBar"..frame.."StatusBar_Delay"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
+	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
   if( self.casting ) then    
     local intCurrentTime = GetTime()
     if (intCurrentTime > self.maxValue) then
@@ -360,6 +375,7 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
  		if ( intCurrentTime == self.maxValue ) then
 			barStatusBar:SetValue(1);
+
 			barTexture:SetTexCoord(0,1,0,1);
 		  local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."SuccessColor"])
 			barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
@@ -373,6 +389,8 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local progress = ( intCurrentTime - self.startTime ) / ( self.maxValue - self.startTime );
     barTexture:SetTexCoord(0, progress, 0, 1) 
     barStatusBar:SetValue( progress )
+	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", -1, 0)
+	--lagBar:SetValue(progress)
     barFlash:Hide()
     local sparkPosition = ( progress ) * barStatusBar:GetWidth()
     if( sparkPosition < 0 ) then
@@ -973,6 +991,11 @@ function eCastingBar_checkTextures()
     _G["eCastingBar"..option.."StatusBarTexture"]:SetHeight(10)
     _G["eCastingBar"..option.."StatusBarTexture"]:SetHorizTile(True)
     _G["eCastingBar"..option.."StatusBarTexture"]:SetVertTile(True)
+    _G["eCastingBar"..option.."LagBarTexture"]:SetTexture( CASTING_BAR_TEXTURES[eCastingBar_Saved[option.."Texture"]] )
+    _G["eCastingBar"..option.."LagBarTexture"]:SetWidth(20)
+    _G["eCastingBar"..option.."LagBarTexture"]:SetHeight(10)
+    _G["eCastingBar"..option.."LagBarTexture"]:SetHorizTile(True)
+    _G["eCastingBar"..option.."LagBarTexture"]:SetVertTile(True)
     _G["eCastingBar"..option.."ExampleStatusBarTexture"]:SetTexture( CASTING_BAR_TEXTURES[eCastingBar_Saved[option.."Texture"]] )
     _G["eCastingBar"..option.."ExampleStatusBarText"]:SetText( eCastingBar_Saved[option.."Texture"] )
     _G["eCastingBar"..option.."ExampleStatusBarTexture"]:SetHorizTile(True)
@@ -1145,6 +1168,9 @@ function eCastingBar_SetSize()
     
     _G["eCastingBar"..option.."StatusBar"]:SetWidth(width - 9)
     _G["eCastingBar"..option.."StatusBar"]:SetHeight(height - 10)
+    
+    _G["eCastingBar"..option.."LagBar"]:SetWidth(width - 9)
+    _G["eCastingBar"..option.."LagBar"]:SetHeight(height - 10)
 
     _G["eCastingBar"..option.."StatusBarIcon"]:SetWidth(height - 6)
     _G["eCastingBar"..option.."StatusBarIcon"]:SetHeight(height - 6)
@@ -1164,9 +1190,13 @@ function eCastingBar_SetSize()
     _G["eCastingBar"..option.."StatusBarText"]:SetWidth(width - 49)
     _G["eCastingBar"..option.."StatusBarText"]:SetHeight(height + 13)
     
+    _G["eCastingBar"..option.."LagBarText"]:SetWidth(width - 49)
+    _G["eCastingBar"..option.."LagBarText"]:SetHeight(height + 13)
+    
     -- set the font size
     local fontName, _, fontFlags = _G["eCastingBar"..option.."StatusBarText"]:GetFont()
 		_G["eCastingBar"..option.."StatusBarText"]:SetFont(fontName, eCastingBar_Saved[option.."FontSize"], fontFlags)
+		_G["eCastingBar"..option.."LagBarText"]:SetFont(fontName, math.max(eCastingBar_Saved[option.."FontSize"]-5,1), fontFlags)
 		_G["eCastingBar"..option.."StatusBar_Time"]:SetFont(fontName, eCastingBar_Saved[option.."FontSize"], fontFlags)
 
 		-- set the Alpha

@@ -162,6 +162,38 @@
 					</Layer>
 				</Layers>
 			</Frame>
+			<StatusBar name="$parentLagBar">
+				<Size>
+					<AbsDimension x="255" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString	name="$parentText" inherits="eCastingBarFont" justifyV="BOTTOM" justifyH="RIGHT">
+							<Anchors>	
+								<Anchor	point="BOTTOMRIGHT" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						self:SetFrameLevel(self:GetFrameLevel() - 1)
+					</OnLoad>
+				</Scripts>
+				<BarTexture name="$parentTexture" file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="1.0" g="0.0" b="0.0" a="0.6"/>
+			</StatusBar>
 			<StatusBar name="$parentStatusBar">
 				<Size>
 					<AbsDimension x="255" y="20"/>
