@@ -1,7 +1,7 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
 CASTING_BAR_MINOR_VERSION = "4";
-CASTING_BAR_REVISION = "0";
+CASTING_BAR_REVISION = "2";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
 CASTING_BAR_HOLD_TIME = 1;
@@ -190,10 +190,11 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		barStatusBar:SetValue( 0 )
 
     if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-		  lagBar:SetMinMaxValues(0,1)
-		  lagBar:SetValue(1-lag/(endTime-startTime))
-		  lagText:SetTextColor(0.7,0.7,0.7,0.8)
-      lagText:SetText(string.format("%ims", lag))
+		lagBar:SetMinMaxValues(0,1)
+	  	lagBar:SetValue(1-lag/(endTime-startTime))
+   		--lagText:SetJustifyH("RIGHT")
+	  	lagText:SetTextColor(0.7,0.7,0.7,0.8)
+      	lagText:SetText(string.format("%ims", lag))
     else
       lagText:SetText( "")
       lagBar:SetValue(0)
@@ -315,6 +316,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
     if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
+   	--lagText:SetJustifyH("LEFT")
     lagText:SetTextColor(0.7,0.7,0.7,0.8)
     lagText:SetText(string.format("%ims", lag))
     else
@@ -323,8 +325,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		barStatusBar:SetMinMaxValues( 0, 1 )
 		barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
     if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-      lagBar:SetMinMaxValues(0,1)
-      lagBar:SetValue(lag/(endTime-startTime))
+  		lagBar:SetMinMaxValues(0,1)
+  		lagBar:SetValue(lag/(endTime-startTime))
     else
       lagBar:SetValue(0)
     end
@@ -339,7 +341,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			barText:SetText( "" )
 		end
 		self:SetAlpha( 1.0 )
-  	self.delay = 0
+  		self.delay = 0
 		self.holdTime = 0
 		self.casting = nil
 		self.channeling = 1
@@ -382,6 +384,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
 	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
   if( self.casting ) then    
+	lagTexture:SetDrawLayer("ARTWORK")
     local intCurrentTime = GetTime()
     if (intCurrentTime > self.maxValue) then
     	intCurrentTime = self.maxValue
@@ -411,19 +414,22 @@ function eCastingBar_OnUpdate(self, elapsed)
       sparkPosition = 0	
     end
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
+
+    local timeText = ""
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
-      barTime:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) )
-    else
-      barTime:SetText("")
+    	timeText = string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) )
     end
-    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 ) and ( eCastingBar_Saved[frame.."ShowTime"] == 0)) then
-	    barTimeQuart:SetText( string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) ) .. " / " ..string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0)))
-    else
-      barTimeQuart:SetText("")
+    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) then
+    	timeText = timeText .. " / "
+	end
+    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 )) then
+	    timeText = timeText .. string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0))
     end
+    barTime:SetText(timeText)
   -- no, we channeling?	
   elseif ( self.channeling ) then
     -- yes
+	lagTexture:SetDrawLayer("OVERLAY")
     local intTimeLeft = GetTime()
 		if ( intTimeLeft > self.endTime ) then
 			intTimeLeft = self.endTime;
@@ -445,9 +451,10 @@ function eCastingBar_OnUpdate(self, elapsed)
     barFlash:Hide()
     local sparkPosition = ( intBarValueProgress ) * _G["eCastingBar"..frame.."Background"]:GetWidth()
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
-    if (eCastingBar_Saved[frame.."ShowTime"] == 1) then    	
+
+    local timeText = ""
+    if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
       local timeLeft = math.max( _G["eCastingBar"..frame].endTime - intTimeLeft, 0.0 )
-      local timeMsg = nil
       local minutes = 0
       local seconds = 0
       
@@ -458,14 +465,33 @@ function eCastingBar_OnUpdate(self, elapsed)
           minutes = minutes + 1
           seconds = 0
         end
-        timeMsg = format("%s:%s", minutes, getFormattedNumber(seconds))
+        timeText = format("%s:%s", minutes, getFormattedNumber(seconds))
       else
-        timeMsg = string.format( "%.1f", timeLeft )
+        timeText = string.format( "%.1f", timeLeft )
       end
-      barTime:SetText( timeMsg )
-    else
-      barTime:SetText("")
     end
+    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) then
+    	timeText = timeText .. " / "
+	end
+    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 )) then
+      local totalTime = self.endTime - self.startTime 
+      local minutes = 0
+      local seconds = 0
+      
+      if (totalTime > 60) then
+        minutes = math.floor( ( totalTime / 60 ))
+        local seconds = math.ceil( totalTime - ( 60 * minutes ))
+        if (seconds == 60) then
+          minutes = minutes + 1
+          seconds = 0
+        end
+        timeText = timeText .. format("%s:%s", minutes, getFormattedNumber(seconds))
+      else
+        timeText = timeText .. string.format( "%.1f", totalTime )
+      end
+    end
+    barTime:SetText(timeText)
+
     if ((eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) and (self.delay ~= 0)) then
       barTimeQuart:SetText("+"..string.format( "%.1f", self.delay ) )
     else
