@@ -192,7 +192,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
     if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
 		lagBar:SetMinMaxValues(0,1)
 	  	lagBar:SetValue(1-lag/(endTime-startTime))
-   		--lagText:SetJustifyH("RIGHT")
+   		lagText:SetJustifyH("RIGHT")
+   		lagText:SetPoint("RIGHT", lagBar, "RIGHT", 0, 0)
 	  	lagText:SetTextColor(0.7,0.7,0.7,0.8)
       	lagText:SetText(string.format("%ims", lag))
     else
@@ -316,7 +317,8 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
     if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-   	--lagText:SetJustifyH("LEFT")
+   	lagText:SetJustifyH("LEFT")
+   	lagText:SetPoint("LEFT", lagBar, "LEFT", 0, 0)
     lagText:SetTextColor(0.7,0.7,0.7,0.8)
     lagText:SetText(string.format("%ims", lag))
     else
