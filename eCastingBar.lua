@@ -346,12 +346,14 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.casting = nil
 		self.channeling = 1
 		self.fadeOut = nil
-		if (notInterruptible) then
-	                self:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE_UNINT, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
-	                self:SetBackdropColor(0,0,0,0.5)
-		else
-			self:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
-                	self:SetBackdropColor(0,0,0,0.5)
+		if(eCastingBar_Saved.HideBorder == 0) then
+			if (notInterruptible) then
+		                self:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE_UNINT, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
+		                self:SetBackdropColor(0,0,0,0.5)
+			else
+				self:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
+	                	self:SetBackdropColor(0,0,0,0.5)
+			end
 		end
 		if (  eCastingBar_Saved[frame.."Enabled"] == 1) then
 			self:Show()
