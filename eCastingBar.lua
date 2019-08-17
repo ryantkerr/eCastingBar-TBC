@@ -536,20 +536,7 @@ function eCastingBar_ResetSettings()
   
   for option in pairs(CASTING_BAR_BUTTONS) do
     local btn = _G["eCastingBar"..option]
-    btn:SetChecked(eCastingBar_Saved[option])
-
-    if (option == "HideBorder") then
-      btn:SetChecked(nil)
-    end
-    if (option == "MirrorHideBorder") then
-      btn:SetChecked(nil)
-    end
-    if (option == "Locked") then
-      btn:SetChecked(nil)
-    end
-    if (option == "MirrorLocked") then
-      btn:SetChecked(nil)
-    end
+    btn:SetChecked(eCastingBar_Saved[option] and true or false)
   end
 end
 
@@ -566,23 +553,10 @@ function eCastingBar_CheckSettings()
 			eCastingBar_Saved[color] = CASTING_BAR_DEFAULT_COLORS[color]
 		end
   end
-  
+
   for option in pairs(CASTING_BAR_BUTTONS) do
     local btn = _G["eCastingBar"..option]
-    btn:SetChecked(eCastingBar_Saved[option])
-
-    if (option == "HideBorder") then
-      btn:SetChecked(nil)
-    end
-    if (option == "MirrorHideBorder") then
-      btn:SetChecked(nil)
-    end
-    if (option == "Locked") then
-      btn:SetChecked(nil)
-    end
-    if (option == "MirrorLocked") then
-      btn:SetChecked(nil)
-    end
+    btn:SetChecked(eCastingBar_Saved[option] == 1 and true or false)
   end
 end
 
