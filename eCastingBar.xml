@@ -236,7 +236,7 @@
 								</Anchor>
 							</Anchors>
 						</FontString>
-						<FontString	name="$parent_TimeQuart" inherits="eCastingBarFont" justifyV="CENTER" justifyH="LEFT">
+						<FontString	name="$parent_TotalTime" inherits="eCastingBarFont" justifyV="CENTER" justifyH="LEFT">
 							<Anchors>	
 								<Anchor	point="TOPRIGHT" relativeTo="$parent">
 									<Offset>

@@ -47,13 +47,13 @@ local CASTING_BAR_DEFAULTS = {
   ["Texture"] = "Perl",
   ["ShowTime"] = 1,
   ["HideBorder"] = 0,
-  ["ShowTimeQuart"] = 1,
+  ["ShowTotalTime"] = 0,
   ["Width"] = CASTING_BAR_WIDTH,
   ["Height"] = CASTING_BAR_HEIGHT,
   ["Left"] = CASTING_BAR_LEFT,
   ["Bottom"] = 180,
   ["ShowSpellName"] = 1,
-  ["ShowLatency"] = 1,
+  ["ShowLatency"] = 0,
   ["FontSize"] = 12,
   ["Alpha"] = 100,
   ["IconPosition"] = "HIDDEN",
@@ -83,7 +83,7 @@ local CASTING_BAR_DEFAULT_COLORS = {
   ["BreathColor"] = {0.0, 0.5, 1.0, 1},
   ["FlightColor"] = {.26, 0.93, 1.0, 1.0},
   ["TimeColor"] = {1.0, 1.0, 1.0, 1},
-  ["LagColor"] = {1.0, 0.0, 0.0, 0.6},
+  ["LagColor"] = {1.0, 0.0, 0.0, 0.84},
   ["MirrorTimeColor"] = {1.0, 1.0, 1.0, 1},
   ["MirrorFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
 }
@@ -382,7 +382,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local lagBar = _G["eCastingBar"..frame.."LagBar"];
 	local barSpark = _G["eCastingBar"..frame.."StatusBarSpark"];
 	local barTime = _G["eCastingBar"..frame.."StatusBar_Time"];
-	local barTimeQuart = _G["eCastingBar"..frame.."StatusBar_TimeQuart"];
+	local barTotalTime = _G["eCastingBar"..frame.."StatusBar_TotalTime"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
 	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
   if( self.casting ) then    
@@ -407,7 +407,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local progress = ( intCurrentTime - self.startTime ) / ( self.maxValue - self.startTime );
     barTexture:SetTexCoord(0, progress, 0, 1) 
     barStatusBar:SetValue( progress )
-	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", -1, 0)
+	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", 0, 0)
 	--lagBar:SetValue(progress)
     barFlash:Hide()
     local sparkPosition = ( progress ) * barStatusBar:GetWidth()
@@ -421,10 +421,10 @@ function eCastingBar_OnUpdate(self, elapsed)
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
     	timeText = string.format( "%.1f", math.max( self.maxValue - intCurrentTime, 0.0 ) )
     end
-    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) then
+    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTotalTime"] == 1) then
     	timeText = timeText .. " / "
 	end
-    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 )) then
+    if (( eCastingBar_Saved[frame.."ShowTotalTime"] == 1 )) then
 	    timeText = timeText .. string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0))
     end
     barTime:SetText(timeText)
@@ -472,10 +472,10 @@ function eCastingBar_OnUpdate(self, elapsed)
         timeText = string.format( "%.1f", timeLeft )
       end
     end
-    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) then
+    if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTotalTime"] == 1) then
     	timeText = timeText .. " / "
 	end
-    if (( eCastingBar_Saved[frame.."ShowTimeQuart"] == 1 )) then
+    if (( eCastingBar_Saved[frame.."ShowTotalTime"] == 1 )) then
       local totalTime = self.endTime - self.startTime 
       local minutes = 0
       local seconds = 0
@@ -494,10 +494,10 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
     barTime:SetText(timeText)
 
-    if ((eCastingBar_Saved[frame.."ShowTimeQuart"] == 1) and (self.delay ~= 0)) then
-      barTimeQuart:SetText("+"..string.format( "%.1f", self.delay ) )
+    if ((eCastingBar_Saved[frame.."ShowTotalTime"] == 1) and (self.delay ~= 0)) then
+      barTotalTime:SetText("+"..string.format( "%.1f", self.delay ) )
     else
-      barTimeQuart:SetText("")
+      barTotalTime:SetText("")
     end
   elseif( GetTime() < self.holdTime ) then
     return
@@ -853,12 +853,12 @@ function eCastingBarGeneral_MouseDown( strButton, frmFrame, frameType )
 	end
 end
 
-function eCastingBar_getShowTimeQuart()
-	return eCastingBar_Saved.ShowTimeQuart
+function eCastingBar_getShowTotalTime()
+	return eCastingBar_Saved.ShowTotalTime
 end
 
-function eCastingBar_setShowTimeQuart( intShowTimeQuart )
-	eCastingBar_Saved.ShowTimeQuart = intShowTimeQuart
+function eCastingBar_setShowTotalTime( intShowTotalTime )
+	eCastingBar_Saved.ShowTotalTime = intShowTotalTime
 end
 
 function eCastingBar_checkBorders()
@@ -1099,7 +1099,7 @@ function eCastingBar_checkTimeColors()
   end
   for index, option in pairs(frameSuffixes) do
     local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."TimeColor"])
-    _G["eCastingBar"..option.."StatusBar_TimeQuart"]:SetTextColor(Red,Green,Blue, Alpha )
+    _G["eCastingBar"..option.."StatusBar_TotalTime"]:SetTextColor(Red,Green,Blue, Alpha )
   end
 end
 

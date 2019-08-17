@@ -338,7 +338,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-    					<CheckButton name="eCastingBarShowTimeQuart" inherits="eCastingBarCheckButtonTemplate">
+    					<CheckButton name="eCastingBarShowTotalTime" inherits="eCastingBarCheckButtonTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTime" relativePoint="BOTTOMLEFT">
     								<Offset>
@@ -348,7 +348,7 @@
     						</Anchors>
     						<Scripts>
     							<OnLoad>
-    								self.index = "ShowTimeQuart"
+    								self.index = "ShowTotalTime"
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
@@ -385,7 +385,7 @@
 									<AbsDimension x="70" y="24"/>
 								</Size>
 								<Anchors>
-									<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTimeQuart" relativePoint="BOTTOMLEFT">
+									<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTotalTime" relativePoint="BOTTOMLEFT">
 										<Offset>
 											<AbsDimension x="2" y="-2"/>
 										</Offset>
@@ -421,7 +421,7 @@
     							<AbsDimension x="120" y="16"/>
     						</Size>
     						<Anchors>
-    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTimeQuart" relativePoint="BOTTOMLEFT">
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTotalTime" relativePoint="BOTTOMLEFT">
     								<Offset>
     									<AbsDimension x="0" y="-57" />
     								</Offset>
