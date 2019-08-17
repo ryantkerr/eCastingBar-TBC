@@ -536,7 +536,7 @@ function eCastingBar_ResetSettings()
   
   for option in pairs(CASTING_BAR_BUTTONS) do
     local btn = _G["eCastingBar"..option]
-    btn:SetChecked(eCastingBar_Saved[option] and true or false)
+    btn:SetChecked(eCastingBar_Saved[option] == 1 and true or false)
   end
 end
 
