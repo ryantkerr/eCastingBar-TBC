@@ -14,6 +14,8 @@ CASTINGBAR_TEXTURES_MENU = {
 		{ text = "Glaze", value = "Glaze"},
 		{ text = "Gloss", value = "Gloss"},
 		{ text = "Halcyon", value = "Halcyon"},
+		{ text = "Minimalist", value = "Minimalist"},
+		{ text = "Quartz", value = "Quartz"},
 		{ text = "Smooth", value = "Smooth"},
 		{ text = "Striped", value = "Striped"},
 };
@@ -28,6 +30,8 @@ CASTING_BAR_TEXTURES = {
 	["Glaze"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Glaze.tga",
 	["Gloss"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Gloss.tga",
 	["Halcyon"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Halycon.tga",
+	["Minimalist"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Minimalist.tga",
+	["Quartz"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Quartz.tga",
 	["Smooth"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Smooth.tga",
 	["Striped"] = "Interface\\AddOns\\eCastingBar\\Textures\\CastingBar_Striped.tga", 
 	};
