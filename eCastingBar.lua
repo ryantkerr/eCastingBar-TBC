@@ -118,7 +118,7 @@ local barticks = setmetatable({}, sparkfactory)
 local function setBarTicks(tickRate, duration, ticks)
 	if( tickRate and tickRate > 0) then
 		local width = eCastingBar_Saved.Width
-		for k = 0, (duration/tickRate)-1 do
+		for k = 0, duration-tickRate, tickRate do
 			local t = barticks[k]
 			t:ClearAllPoints()
 			local x = ticks[k] / duration
@@ -371,13 +371,13 @@ function eCastingBar_OnEvent(self, newevent, ...)
 
 		-- TODO : check if option enabled
 		if(true) then
-			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified integer duration
+			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified duration
 			local channelingDuration = math.floor((endTime-startTime)/1000+0.5)
 			local ticksRate = getChannelingTicksRate(spellId, channelingDuration)
 			if(ticksRate > 0) then
 				local barTicks = barTicks or {}
-				for i = 0, channelingDuration/ticksRate-1 do
-					barTicks[i] = i*ticksRate
+				for i = 0, channelingDuration-ticksRate, ticksRate do
+					barTicks[i] = i
 				end
 				setBarTicks(ticksRate, channelingDuration, barTicks)
 			end
