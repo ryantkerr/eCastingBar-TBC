@@ -130,10 +130,13 @@ local function setBarTicks(tickRate, duration, ticks)
 			barticks[k]:Hide()
 		end
 	else
-		barticks[1].Hide = nil
-		for i=1,#barticks do
-			barticks[i]:Hide()
-		end
+		cleanTicks()
+	end
+end
+
+local function cleanTicks()
+	for i=0,#barticks do
+		barticks[i]:Hide()
 	end
 end
 
@@ -236,6 +239,9 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			self:Hide();
 			return;
 		end
+
+		cleanTicks()
+
 		local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."SpellColor"])
 		barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
 		if ( barSpark ) then
@@ -369,6 +375,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			return;
 		end
 
+		cleanTicks()
 		-- TODO : check if option enabled
 		if(true) then
 			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified duration
