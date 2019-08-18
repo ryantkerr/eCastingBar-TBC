@@ -865,7 +865,7 @@
     							</OnLoad>
     						</Scripts>
     					</Button>
-    					
+
     					<Button name="btnFlashBorderColor" inherits="eCastingBarButtonTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="btnChannelColor">
@@ -890,6 +890,34 @@
     						<Scripts>
     							<OnLoad>
     								self.objindex = "FlashBorderColor"
+    							</OnLoad>
+    						</Scripts>
+    					</Button>
+
+							<Button name="btnDelayColor" inherits="eCastingBarButtonTemplate">
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnFlashBorderColor">
+    								<Offset>
+    									<AbsDimension y="-5" x="0"/>
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Layers>
+    							<Layer level="ARTWORK">
+    								<Texture name="$parentTexture">
+    									<Size>
+    										<AbsDimension y="16" x="16"/>
+    									</Size>
+    									<Anchors>
+    										<Anchor point="CENTER">
+    								</Anchor>
+    									</Anchors>
+    								</Texture>
+    							</Layer>
+    						</Layers>
+    						<Scripts>
+    							<OnLoad>
+    								self.objindex = "DelayColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
@@ -986,6 +1014,23 @@
     						</Size>
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="btnLagColor">
+    								<Offset>
+    									<AbsDimension x="0" y="-5" />
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Layers>
+    							<Layer>
+    								<FontString name="$parentText" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+    							</Layer>
+    						</Layers>
+    					</Frame>
+							<Frame name="lblDelayColor">
+    						<Size>
+    							<AbsDimension x="80" y="18" />
+    						</Size>
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="btnDelayColor">
     								<Offset>
     									<AbsDimension x="0" y="-5" />
     								</Offset>

@@ -79,6 +79,7 @@ CASTINGBAR_COLOR_LABEL = {
   ["FailedColor"] = "Failed",
   ["TimeColor"] = "Time",
   ["LagColor"] = "Latency",
+  ["DelayColor"] = "Delay",
   ["FlashBorderColor"] = "Flash Border",
   ["FeignDeathColor"] = "Feign Death",
   ["ExhaustionColor"] = "Exhaustion",

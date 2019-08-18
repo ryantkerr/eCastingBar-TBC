@@ -85,7 +85,8 @@ local CASTING_BAR_DEFAULT_COLORS = {
   ["BreathColor"] = {0.0, 0.5, 1.0, 1},
   ["FlightColor"] = {.26, 0.93, 1.0, 1.0},
   ["TimeColor"] = {1.0, 1.0, 1.0, 1},
-  ["LagColor"] = {1.0, 0.0, 0.0, 0.84},
+	["LagColor"] = {1.0, 0.0, 0.0, 0.84},
+	["DelayColor"] = {1.0, 0.0, 0.0, 1},
   ["MirrorTimeColor"] = {1.0, 1.0, 1.0, 1},
   ["MirrorFlashBorderColor"] = {1.0, 0.88, 0.25, 1},
 }
@@ -466,6 +467,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local barSpark = _G["eCastingBar"..frame.."StatusBarSpark"];
 	local barTime = _G["eCastingBar"..frame.."StatusBar_Time"];
 	local barTotalTime = _G["eCastingBar"..frame.."StatusBar_TotalTime"];
+	local barDelay = _G["eCastingBar"..frame.."StatusBar_Delay"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
 	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
   if( self.casting ) then    
@@ -499,6 +501,12 @@ function eCastingBar_OnUpdate(self, elapsed)
       sparkPosition = 0	
     end
     barSpark:SetPoint( "CENTER", "eCastingBar"..frame.."StatusBar", "LEFT", sparkPosition, 0 )
+
+		if (( eCastingBar_Saved[frame.."ShowDelay"] == 1 ) and ( self.delay ~= 0)) then  
+	    barDelay:SetText("+"..string.format( "%.1f", self.delay ) )
+    else
+      barDelay:SetText("")
+    end
 
     local timeText = ""
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1) then
@@ -581,6 +589,11 @@ function eCastingBar_OnUpdate(self, elapsed)
       barTotalTime:SetText("+"..string.format( "%.1f", self.delay ) )
     else
       barTotalTime:SetText("")
+		end
+		if ((eCastingBar_Saved[frame.."ShowDelay"] == 1) and (self.delay ~= 0)) then
+      barDelay:SetText("+"..string.format( "%.1f", self.delay ) )
+    else
+      barDelay:SetText("")
     end
   elseif( GetTime() < self.holdTime ) then
     return
@@ -648,7 +661,8 @@ function setup()
 	eCastingBar_checkLocked()
 	eCastingBar_checkBorders()
   eCastingBar_checkTimeColors()
-  eCastingBar_setLagColor()
+	eCastingBar_setLagColor()
+	eCastingBar_setDelayColor()
 	eCastingBar_SetSize()
 	eCastingBar_checkFlashBorderColors()
 	eCastingBar_checkTextures()
@@ -944,6 +958,14 @@ function eCastingBar_setShowTotalTime( intShowTotalTime )
 	eCastingBar_Saved.ShowTotalTime = intShowTotalTime
 end
 
+function eCastingBar_getShowDelay()
+	return eCastingBar_Saved.ShowDelay
+end
+
+function eCastingBar_setShowDelay( intShowDelay )
+	eCastingBar_Saved.ShowDelay = intShowDelay
+end
+
 function eCastingBar_checkBorders()
   for index, option in pairs(frameSuffixes) do
   	local bar = _G["eCastingBar"..option]
@@ -1186,12 +1208,20 @@ function eCastingBar_checkTimeColors()
   end
 end
 
+function eCastingBar_setDelayColor()
+  for index, option in pairs(frameSuffixes) do
+    local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."DelayColor"])
+    _G["eCastingBar"..option.."StatusBar_Delay"]:SetTextColor(Red,Green,Blue, Alpha )
+  end
+end
+
 function eCastingBar_setLagColor()
   for index, option in pairs(frameSuffixes) do
     local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[option.."LagColor"])
     _G["eCastingBar"..option.."LagBar"]:SetStatusBarColor(Red,Green,Blue, Alpha )
   end
 end
+
 --[[ sets up the flash to look cool ]]--
 
 --(thanks goes to kaitlin for the code used while resting). 
