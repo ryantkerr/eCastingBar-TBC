@@ -56,7 +56,9 @@ local CASTING_BAR_DEFAULTS = {
   ["ShowLatency"] = 0,
   ["FontSize"] = 12,
   ["Alpha"] = 100,
-  ["IconPosition"] = "HIDDEN",
+	["IconPosition"] = "HIDDEN",
+	["ShowDelay"] = 1,
+  ["ShowTicks"] = 0,
   ["MirrorLocked"] = 0,
   ["MirrorEnabled"] = 1,
   ["MirrorTexture"] = "Perl",
@@ -504,7 +506,7 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
     if ( eCastingBar_Saved[frame.."ShowTime"] == 1 and eCastingBar_Saved[frame.."ShowTotalTime"] == 1) then
     	timeText = timeText .. " / "
-	end
+		end
     if (( eCastingBar_Saved[frame.."ShowTotalTime"] == 1 )) then
 	    timeText = timeText .. string.format( "%.1f", math.max(self.maxValue - self.startTime, 0.0))
     end

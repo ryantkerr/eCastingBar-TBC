@@ -76,7 +76,7 @@
 
 	<Frame name="eCB_OptionFrame" toplevel="true" movable="true" enableMouse="true" parent="UIParent" hidden="true">
 		<Size>
-      <AbsDimension x="437" y="574" />
+      <AbsDimension x="437" y="563" />
     </Size>
     <Anchors>
       <Anchor point="CENTER" relativeTo="UIParent">
@@ -191,7 +191,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="eCB_OptionFrame" relativePoint="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-31" y="541"/>
+							<AbsDimension x="-31" y="530"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -269,7 +269,7 @@
 			<!-- Tabbed Frame -->
 			<Frame name="$parentTabbed" inherits="eCB_Option_PanelTemplate">
 				<Size>
-					<AbsDimension x="397.6" y="480"/>
+					<AbsDimension x="397.6" y="470"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentCastingTab" relativePoint="BOTTOMLEFT">
@@ -399,6 +399,34 @@
 									</OnLoad>
 								</Scripts>
 							</Button>
+							<CheckButton name="eCastingBarShowTicks" inherits="eCastingBarCheckButtonTemplate">
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowLatency" relativePoint="BOTTOMLEFT">
+    								<Offset>
+    									<AbsDimension x="0" y="0"/>
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Scripts>
+    							<OnLoad>
+    								self.index = "ShowTicks"
+    							</OnLoad>
+    						</Scripts>
+    					</CheckButton>
+							<CheckButton name="eCastingBarShowDelay" inherits="eCastingBarCheckButtonTemplate">
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarIconPosition" relativePoint="BOTTOMLEFT">
+    								<Offset>
+    									<AbsDimension x="0" y="0"/>
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Scripts>
+    							<OnLoad>
+    								self.index = "ShowDelay"
+    							</OnLoad>
+    						</Scripts>
+    					</CheckButton>
         			<Slider name="eCastingBarFontSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
@@ -406,7 +434,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowLatency" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-25" />
+    									<AbsDimension x="0" y="-46" />
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -423,7 +451,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTotalTime" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-57" />
+    									<AbsDimension x="0" y="-73" />
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -995,7 +1023,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
     								<Offset>
-    									<AbsDimension x="20" y="-100"/>
+    									<AbsDimension x="20" y="-92"/>
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -1009,7 +1037,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
     								<Offset>
-    									<AbsDimension x="200" y="-100"/>
+    									<AbsDimension x="200" y="-92"/>
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -1271,7 +1299,7 @@
       					<Anchors>
       						<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
       							<Offset>
-      								<AbsDimension x="30" y="-25"/>
+      								<AbsDimension x="30" y="-20"/>
       							</Offset> 
       						</Anchor>
       					</Anchors>
