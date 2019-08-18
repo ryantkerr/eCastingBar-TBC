@@ -101,6 +101,63 @@ local eCastingBar__FlashBorders = {
 	"BOTTOMRIGHT"	
 }
 
+local sparkfactory = {
+	__index = function(t,k)
+		local spark = _G["eCastingBarStatusBar"]:CreateTexture(nil, 'OVERLAY')
+		t[k] = spark
+		spark:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
+		spark:SetVertexColor(1.0, 1.0, 1.0, 0.7)
+		spark:SetBlendMode('ADD')
+		spark:SetWidth(16)
+		spark:SetHeight(eCastingBar_Saved.Height)
+		return spark
+	end
+}
+local barticks = setmetatable({}, sparkfactory)
+
+local function setBarTicks(tickRate, duration, ticks)
+	if( tickRate and tickRate > 0) then
+		local width = eCastingBar_Saved.Width
+		for k = 0, (duration/tickRate)-1 do
+			local t = barticks[k]
+			t:ClearAllPoints()
+			local x = ticks[k] / duration
+			t:SetHeight(eCastingBar_Saved.Height)
+			t:SetPoint("CENTER", _G["eCastingBarStatusBar"], "LEFT", width * x, 0 )
+			t:Show()
+		end
+		for k = duration+1,#barticks do
+			barticks[k]:Hide()
+		end
+	else
+		barticks[1].Hide = nil
+		for i=1,#barticks do
+			barticks[i]:Hide()
+		end
+	end
+end
+
+local channelingTicksRate = {
+	-- Rain of Fire
+	[5740] = 2, -- rank 1
+	[6219] = 2, -- rank 2
+	[11677] = 2, -- rank 3
+	[11678] = 2, -- rank 4
+	-- Drain Soul
+	[1120] = 3, -- rank 1
+	[8288] = 3, -- rank 2
+	[8289] = 3, -- rank 3
+	[11675] = 3, -- rank 4
+}
+
+local function getChannelingTicksRate(spell, duration)
+	-- Spells longer than 15 seconds don't tick (afaik), maybe TODO check spells that don't tick and last less than 15 seconds
+	if duration > 15 then 
+		return 0
+	end
+	
+	return channelingTicksRate[spell] or 1
+end
 
 function ECB_addChat(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(CASTINGBAR_HEADER.." "..msg)
@@ -306,32 +363,47 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		end
 		
 	elseif( newevent == "UNIT_SPELLCAST_CHANNEL_START" ) then
-		local spellName, displayName, texture, startTime, endTime, isTradeSkill, notInterruptible = ChannelInfo(newarg1)
+		local spellName, displayName, texture, startTime, endTime, isTradeSkill, notInterruptible, spellId = ChannelInfo(newarg1)
 		if ( not spellName) then
 			self:Hide();
 			return;
 		end
+
+		-- TODO : check if option enabled
+		if(true) then
+			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified integer duration
+			local channelingDuration = math.floor((endTime-startTime)/1000+0.5)
+			local ticksRate = getChannelingTicksRate(spellId, channelingDuration)
+			if(ticksRate > 0) then
+				local barTicks = barTicks or {}
+				for i = 0, channelingDuration/ticksRate-1 do
+					barTicks[i] = i*ticksRate
+				end
+				setBarTicks(ticksRate, channelingDuration, barTicks)
+			end
+		end
+
   	local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved[frame.."ChannelColor"])
   	barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
 		self.startTime = (startTime/1000)
 		self.endTime = (endTime/1000)
 		self.maxValue = self.startTime
-    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-   	lagText:SetJustifyH("LEFT")
-   	lagText:SetPoint("LEFT", lagBar, "LEFT", 0, 0)
-    lagText:SetTextColor(0.7,0.7,0.7,0.8)
-    lagText:SetText(string.format("%ims", lag))
-    else
-      lagText:SetText("")
-    end
-		barStatusBar:SetMinMaxValues( 0, 1 )
-		barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
-    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
-  		lagBar:SetMinMaxValues(0,1)
-  		lagBar:SetValue(lag/(endTime-startTime))
-    else
-      lagBar:SetValue(0)
-    end
+	    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
+	   	lagText:SetJustifyH("LEFT")
+	   	lagText:SetPoint("LEFT", lagBar, "LEFT", 0, 0)
+	    lagText:SetTextColor(0.7,0.7,0.7,0.8)
+	    lagText:SetText(string.format("%ims", lag))
+	    else
+	      lagText:SetText("")
+	    end
+			barStatusBar:SetMinMaxValues( 0, 1 )
+			barStatusBar:SetValue( (GetTime() - startTime) / (endTime - startTime) )
+	    if ( eCastingBar_Saved[frame.."ShowLatency"] == 1 ) then
+	  		lagBar:SetMinMaxValues(0,1)
+	  		lagBar:SetValue(lag/(endTime-startTime))
+	    else
+	      lagBar:SetValue(0)
+	    end
 		barSpark:Show()
 		if ( barIcon and eCastingBar_Saved[frame.."IconPosition"] ~= "HIDDEN") then
 			barIcon:SetTexture(texture);
