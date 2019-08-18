@@ -76,7 +76,7 @@
 
 	<Frame name="eCB_OptionFrame" toplevel="true" movable="true" enableMouse="true" parent="UIParent" hidden="true">
 		<Size>
-      <AbsDimension x="437" y="555" />
+      <AbsDimension x="437" y="574" />
     </Size>
     <Anchors>
       <Anchor point="CENTER" relativeTo="UIParent">
@@ -191,7 +191,7 @@
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="eCB_OptionFrame" relativePoint="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-31" y="522"/>
+							<AbsDimension x="-31" y="541"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -269,7 +269,7 @@
 			<!-- Tabbed Frame -->
 			<Frame name="$parentTabbed" inherits="eCB_Option_PanelTemplate">
 				<Size>
-					<AbsDimension x="397.6" y="462"/>
+					<AbsDimension x="397.6" y="480"/>
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentCastingTab" relativePoint="BOTTOMLEFT">
@@ -286,7 +286,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
     								<Offset>
-    									<AbsDimension x="20" y="-100"/>
+    									<AbsDimension x="20" y="-92"/>
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -300,7 +300,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
     								<Offset>
-    									<AbsDimension x="200" y="-100"/>
+    									<AbsDimension x="200" y="-92"/>
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -594,7 +594,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCB_OptionFrameTabbed" relativePoint="TOPLEFT">
     								<Offset>
-    									<AbsDimension x="30" y="-25"/>
+    									<AbsDimension x="30" y="-20"/>
     								</Offset> 
     							</Anchor>
     						</Anchors>
