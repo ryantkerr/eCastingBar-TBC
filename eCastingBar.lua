@@ -832,6 +832,9 @@ function setup()
 	eCastingBar_checkFlashBorderColors()
 	eCastingBar_checkTextures()
 	eCastingBar_setIcons()
+
+	testMode()
+	testModeMirror()
 end
 
 --[[ Iniitialization ]]--

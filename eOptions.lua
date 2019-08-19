@@ -181,6 +181,7 @@ function eCastingBar_CheckButton_OnClick(self)
   elseif (string.find(self.index, "HideBorder")) then
     eCastingBar_checkBorders()
   end
+
 	testMode()
     testModeMirror()      
 end
@@ -308,4 +309,6 @@ function eCastingBar_Menu_OnClick(self)
 		eCastingBar_setIcons();
 	end
 	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+	testMode()
+	testModeMirror()
 end
