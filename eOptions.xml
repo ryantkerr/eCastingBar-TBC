@@ -434,7 +434,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowLatency" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-46" />
+    									<AbsDimension x="0" y="-50" />
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -472,7 +472,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarShowTotalTime" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-73" />
+    									<AbsDimension x="0" y="-76" />
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -1197,7 +1197,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarMirrorUseFlightTimer" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-57" />
+    									<AbsDimension x="0" y="-27" />
     								</Offset>
     							</Anchor>
     						</Anchors>
@@ -1235,7 +1235,7 @@
     						<Anchors>
     							<Anchor point="TOPLEFT" relativeTo="eCastingBarMirrorShowTimerLabel" relativePoint="BOTTOMLEFT">
     								<Offset>
-    									<AbsDimension x="0" y="-57" />
+    									<AbsDimension x="0" y="-26" />
     								</Offset>
     							</Anchor>
     						</Anchors>
