@@ -265,15 +265,15 @@ function testMode()
    		lagText:SetPoint("RIGHT", lagBar, "RIGHT", 0, 0)
 	  	lagText:SetTextColor(0.7,0.7,0.7,0.8)
       	lagText:SetText(string.format("%ims", testLag*1000))
+		lagTexture:SetDrawLayer("ARTWORK")
+		lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT")
     else
-      lagText:SetText( "")
+      lagText:SetText("")
       lagBar:SetValue(0)
     end
 
     barTexture:SetTexCoord(0, testProgress, 0, 1) 
     barStatusBar:SetValue( testProgress )
-	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", 0, 0)
-	--lagBar:SetValue(progress)
     barFlash:Hide()
     local sparkPosition = ( testProgress ) * barStatusBar:GetWidth()
     if( sparkPosition < 0 ) then
@@ -399,6 +399,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	local barSpark = _G[name.."StatusBarSpark"];
 	local barText = _G[name.."StatusBarText"];
 	local lagText = _G[name.."LagBarText"];
+	local lagTexture = _G[name.."LagBarTexture"];
 	local lagBar = _G[name.."LagBar"];
 	local frame = self.frame
 	if( newevent == "UNIT_SPELLCAST_START" ) then
@@ -428,8 +429,9 @@ function eCastingBar_OnEvent(self, newevent, ...)
    		lagText:SetPoint("RIGHT", lagBar, "RIGHT", 0, 0)
 	  	lagText:SetTextColor(0.7,0.7,0.7,0.8)
       	lagText:SetText(string.format("%ims", lag))
+		lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", 0, 0)
     else
-      lagText:SetText( "")
+      lagText:SetText("")
       lagBar:SetValue(0)
     end
 
@@ -450,6 +452,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		self.channeling = nil
 		self.fadeOut = nil
 		self.delay = 0
+
 		if eCastingBar_Saved[frame.."HideBorder"] == 0 then
 			if (notInterruptible) then
 		                self:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE_UNINT, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
@@ -624,6 +627,15 @@ function eCastingBar_OnEvent(self, newevent, ...)
 end
 
 function eCastingBar_OnUpdate(self, elapsed)
+
+	local lagBar = _G["eCastingBarLagBar"];
+	local lagTexture = _G["eCastingBarLagBarTexture"];
+	local one,two,three = lagTexture:GetPoint()
+	-- Sometimes the lag texture sets "three" value to TOPLEFT, this is a temp fix until finding why
+	if(three ~= "TOPRIGHT" and not self.channeling and not self.fadeOut) then
+		lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT")
+	end
+
 	if(eCastingBar_Saved["Locked"] == 0 or eCastingBar_Saved["Enabled"] == 0) then
 		return
 	end
@@ -632,13 +644,11 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local bar = _G["eCastingBar"..frame]
 	local barFlash = _G["eCastingBar"..frame.."Flash"]
 	local barStatusBar = _G["eCastingBar"..frame.."StatusBar"];
-	local lagBar = _G["eCastingBar"..frame.."LagBar"];
 	local barSpark = _G["eCastingBar"..frame.."StatusBarSpark"];
 	local barTime = _G["eCastingBar"..frame.."StatusBar_Time"];
 	local barTotalTime = _G["eCastingBar"..frame.."StatusBar_TotalTime"];
 	local barDelay = _G["eCastingBar"..frame.."StatusBar_Delay"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
-	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
 
   if( self.casting ) then    
 	lagTexture:SetDrawLayer("ARTWORK")
@@ -663,7 +673,6 @@ function eCastingBar_OnUpdate(self, elapsed)
     barTexture:SetTexCoord(0, progress, 0, 1) 
     barStatusBar:SetValue( progress )
 	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", 0, 0)
-	--lagBar:SetValue(progress)
     barFlash:Hide()
     local sparkPosition = ( progress ) * barStatusBar:GetWidth()
     if( sparkPosition < 0 ) then
@@ -1089,6 +1098,7 @@ end
 function eCastingBar_MouseUp( strButton, frmFrame, frameType )
 	if( eCastingBar_Saved[frameType.."Locked"] == 0 ) then
 		_G[ frmFrame ]:StopMovingOrSizing()
+
     eCastingBar_Saved[frameType.."Left"] = _G[frmFrame]:GetLeft()
     eCastingBar_Saved[frameType.."Bottom"] = _G[frmFrame]:GetBottom()
     
@@ -1160,7 +1170,6 @@ end
 -------------------------------------------]]--
 
 function eCastingBar_checkLocked()
-
 	local barOutline = _G["eCastingBar_Outline"]
 	if(eCastingBar_Saved["Locked"] == 0 and eCastingBar_Saved["Enabled"] == 1) then
 		barOutline:Show()
@@ -1493,7 +1502,7 @@ function eCastingBar_SetSize()
     -- set the font size
     local fontName, _, fontFlags = _G["eCastingBar"..option.."StatusBarText"]:GetFont()
 		_G["eCastingBar"..option.."StatusBarText"]:SetFont(fontName, eCastingBar_Saved[option.."FontSize"], fontFlags)
-		_G["eCastingBar"..option.."LagBarText"]:SetFont(fontName, math.max(eCastingBar_Saved[option.."FontSize"]-5,1), fontFlags)
+		_G["eCastingBar"..option.."LagBarText"]:SetFont(fontName, math.max(eCastingBar_Saved[option.."FontSize"]*7/12,1), fontFlags)
 		_G["eCastingBar"..option.."StatusBar_Time"]:SetFont(fontName, eCastingBar_Saved[option.."FontSize"], fontFlags)
 
 		-- set the Alpha
