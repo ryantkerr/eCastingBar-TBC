@@ -380,7 +380,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 
 		cleanTicks()
 		-- TODO : check if option enabled
-		if(true) then
+		if ( eCastingBar_Saved[frame.."ShowTicks"] == 1) then
 			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified duration
 			local channelingDuration = math.floor((endTime-startTime)/1000+0.5)
 			local ticksRate = getChannelingTicksRate(spellId, channelingDuration)
@@ -585,11 +585,6 @@ function eCastingBar_OnUpdate(self, elapsed)
     end
     barTime:SetText(timeText)
 
-    if ((eCastingBar_Saved[frame.."ShowTotalTime"] == 1) and (self.delay ~= 0)) then
-      barTotalTime:SetText("+"..string.format( "%.1f", self.delay ) )
-    else
-      barTotalTime:SetText("")
-		end
 		if ((eCastingBar_Saved[frame.."ShowDelay"] == 1) and (self.delay ~= 0)) then
       barDelay:SetText("+"..string.format( "%.1f", self.delay ) )
     else
