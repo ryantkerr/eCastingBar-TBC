@@ -196,9 +196,175 @@ function eCastingBar_OnLoad(self, unit, frame)
 	self.holdTime = 0;
 end
 
+function testMode()
+	local castBar = _G["eCastingBar"];
+	local barStatusBar = _G["eCastingBarStatusBar"];
+	local lagText = _G["eCastingBarLagBarText"];
+	local barFlash = _G["eCastingBarFlash"]
+	local barStatusBar = _G["eCastingBarStatusBar"];
+	local lagBar = _G["eCastingBarLagBar"];
+	local barText = _G["eCastingBarStatusBarText"];
+	local barSpark = _G["eCastingBarStatusBarSpark"];
+	local barTime = _G["eCastingBarStatusBar_Time"];
+	local barTotalTime = _G["eCastingBarStatusBar_TotalTime"];
+	local barDelay = _G["eCastingBarStatusBar_Delay"];
+	local barTexture = _G["eCastingBarStatusBarTexture"];
+	local lagTexture = _G["eCastingBarLagBarTexture"];
+	local barIcon = _G["eCastingBarStatusBarIcon"];
+
+	local n,n,testIcon = GetSpellInfo(5)
+	local testName = "Test Mode"
+	local testCastTime = 2.4
+	local testTotalTime = 4
+	local testProgress = testCastTime/testTotalTime
+	local testLag = 0.1
+	local testDelay = 0.1
+
+	cleanTicks()
+
+	if (eCastingBar_Saved.Enabled == 1) then
+		castBar:Show()
+	else
+		castBar:Hide()
+		return
+	end
+
+	-- set the text to the spell name
+	if ( eCastingBar_Saved.ShowSpellName == 1 ) then
+	  barText:SetText(testName)
+	else
+	barText:SetText( "" )
+	end
+	if ( barIcon and eCastingBar_Saved.IconPosition ~= "HIDDEN") then
+		barIcon:SetTexture(testIcon);
+		barIcon:Show();
+	end
+	castBar:SetAlpha( 1.0 )
+	if eCastingBar_Saved.HideBorder == 0 then
+		if (notInterruptible) then
+	                castBar:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE_UNINT, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
+        	        castBar:SetBackdropColor(0,0,0,0.5)
+		else
+			castBar:SetBackdrop({bgFile = CASTING_BAR_BACKGROUND_FILE, edgeFile = CASTING_BAR_EDGE_FILE, tile = true, tileSize = 16, edgeSize = 16, insets = { left = 2, right = 2, top = 2, bottom = 2 }}) 
+            		castBar:SetBackdropColor(0,0,0,0.5)
+		end
+	end
+
+	local Red, Green, Blue, Alpha = unpack(eCastingBar_Saved.SpellColor)
+	barStatusBar:SetStatusBarColor( Red, Green, Blue, Alpha )
+	if ( barSpark ) then
+		barSpark:Show();
+	end
+	barStatusBar:SetMinMaxValues( 0, 1 )
+	barStatusBar:SetValue( testProgress )
+
+    if ( eCastingBar_Saved.ShowLatency == 1 ) then
+		lagBar:SetMinMaxValues(0,1)
+	  	lagBar:SetValue(1-testLag)
+   		lagText:SetJustifyH("RIGHT")
+   		lagText:SetPoint("RIGHT", lagBar, "RIGHT", 0, 0)
+	  	lagText:SetTextColor(0.7,0.7,0.7,0.8)
+      	lagText:SetText(string.format("%ims", testLag*1000))
+    else
+      lagText:SetText( "")
+      lagBar:SetValue(0)
+    end
+
+    barTexture:SetTexCoord(0, testProgress, 0, 1) 
+    barStatusBar:SetValue( testProgress )
+	lagTexture:SetPoint("TOPLEFT", lagBar, "TOPRIGHT", 0, 0)
+	--lagBar:SetValue(progress)
+    barFlash:Hide()
+    local sparkPosition = ( testProgress ) * barStatusBar:GetWidth()
+    if( sparkPosition < 0 ) then
+		
+      sparkPosition = 0	
+    end
+    barSpark:SetPoint( "CENTER", "eCastingBarStatusBar", "LEFT", sparkPosition, 0 )
+
+		if (( eCastingBar_Saved.ShowDelay == 1 ) and ( testDelay ~= 0)) then  
+	    barDelay:SetText("+"..string.format( "%.1f", testDelay ) )
+    else
+      barDelay:SetText("")
+    end
+
+    local timeText = ""
+    if ( eCastingBar_Saved.ShowTime == 1) then
+    	timeText = string.format( "%.1f", math.max( testCastTime, 0.0 ) )
+    end
+    if ( eCastingBar_Saved.ShowTime == 1 and eCastingBar_Saved.ShowTotalTime == 1) then
+    	timeText = timeText .. " / "
+		end
+    if (( eCastingBar_Saved.ShowTotalTime == 1 )) then
+	    timeText = timeText .. string.format( "%.1f", math.max(testTotalTime, 0.0))
+    end
+    barTime:SetText(timeText)
+
+	if ( eCastingBar_Saved["ShowTicks"] == 1) then
+		 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified duration
+		local channelingDuration = math.max(testTotalTime, 0)
+		local ticksRate = 1
+		if(ticksRate > 0) then
+			local barTicks = barTicks or {}
+			for i = 0, channelingDuration-ticksRate, ticksRate do
+				barTicks[i] = i
+			end
+			setBarTicks(ticksRate, channelingDuration, barTicks)
+		end
+	end
+end
+
+function mirrorTestMode()
+	--if true then return end
+	local mirrorName = "eCastingBarMirror1"
+	local dialog = _G[mirrorName]
+	local statusbar = _G[mirrorName.."StatusBar"]
+	local text = _G[mirrorName.."StatusBarText"]
+	local time = _G[mirrorName.."StatusBar_Time"]
+
+	local testTotalTime = 60
+	local testTimeLeft = 40
+
+	if (eCastingBar_Saved.MirrorEnabled == 1) then
+		dialog:Show()
+	else
+		dialog:Hide()
+		return
+	end
+
+    _G[mirrorName.."Flash"]:Hide()
+	text:SetText("Test Mode")
+	statusbar:SetStatusBarColor(unpack(eCastingBar_Saved.BreathColor));
+	statusbar:SetMinMaxValues(0,1)
+	statusbar:SetValue(testTimeLeft/testTotalTime)
+
+	dialog:SetAlpha( 1.0 )
+
+    if (eCastingBar_Saved.MirrorShowTime == 1) then    	
+		local timeMsg = string.format( "%.1f", testTimeLeft )
+		time:SetText( timeMsg )
+    else
+     	time:SetText("")
+    end
+    
+	-- updates the spark
+    local width = _G[mirrorName.."Background"]:GetWidth()
+    intSparkPosition = ( testTimeLeft / testTotalTime ) * width
+    _G[mirrorName.."StatusBarSpark"]:SetPoint( "CENTER", mirrorName.."StatusBar", "LEFT", intSparkPosition, 0 )
+end
+
 --[[ Handles all the mods' events. ]]--
 
 function eCastingBar_OnEvent(self, newevent, ...)
+
+	if(eCastingBar_Saved["MirrorLocked"] == 0) then
+		mirrorTestMode()
+	end
+	if(eCastingBar_Saved["Locked"] == 0) then
+		testMode()
+		return
+	end
+
 	local newarg1 = ...;
 
 	local unit = self.unit;
@@ -379,10 +545,9 @@ function eCastingBar_OnEvent(self, newevent, ...)
 		end
 
 		cleanTicks()
-		-- TODO : check if option enabled
 		if ( eCastingBar_Saved[frame.."ShowTicks"] == 1) then
 			 -- Spell ticks once every 'ticksRate' seconds and assuming spell has unmodified duration
-			local channelingDuration = math.floor((endTime-startTime)/1000+0.5)
+			local channelingDuration = math.max(math.floor((endTime-startTime)/1000+0.5, 0))
 			local ticksRate = getChannelingTicksRate(spellId, channelingDuration)
 			if(ticksRate > 0) then
 				local barTicks = barTicks or {}
@@ -459,6 +624,15 @@ function eCastingBar_OnEvent(self, newevent, ...)
 end
 
 function eCastingBar_OnUpdate(self, elapsed)
+
+	if(eCastingBar_Saved["MirrorLocked"] == 0) then
+		mirrorTestMode()
+	end
+	if(eCastingBar_Saved["Locked"] == 0) then
+		testMode()
+		return
+	end
+
 	local frame = self.frame
 	local bar = _G["eCastingBar"..frame]
 	local barFlash = _G["eCastingBar"..frame.."Flash"]
@@ -470,6 +644,7 @@ function eCastingBar_OnUpdate(self, elapsed)
 	local barDelay = _G["eCastingBar"..frame.."StatusBar_Delay"];
 	local barTexture = _G["eCastingBar"..frame.."StatusBarTexture"];
 	local lagTexture = _G["eCastingBar"..frame.."LagBarTexture"];
+
   if( self.casting ) then    
 	lagTexture:SetDrawLayer("ARTWORK")
     local intCurrentTime = GetTime()
@@ -987,24 +1162,24 @@ end
 -------------------------------------------]]--
 
 function eCastingBar_checkLocked()
-  for index, option in pairs(frameSuffixes) do
-   	local barOutline = _G["eCastingBar"..option.."_Outline"]
-    -- only show the outline if we are enabled
-    if (eCastingBar_Saved[option.."Enabled"] == 1 and
-          eCastingBar_Saved[option.."Locked"] == 0) then
-      barOutline:Show()
-    else
-      barOutline:Hide()
-    end
-  end
-  
 
-  -- only show the outline if we are enabled
-  if (eCastingBar_Saved.MirrorEnabled == 1 and eCastingBar_Saved.MirrorLocked == 0) then
-  	eCastingBarMirror_Outline:Show()
-  else
-    eCastingBarMirror_Outline:Hide()
-  end
+	local barOutline = _G["eCastingBar_Outline"]
+	if(eCastingBar_Saved["Locked"] == 0 and eCastingBar_Saved["Enabled"] == 1) then
+		testMode()
+		barOutline:Show()
+	else
+		barOutline:Hide()
+		_G["eCastingBar"]:Hide()
+	end
+
+	-- only show the outline if we are enabled
+	if (eCastingBar_Saved.MirrorEnabled == 1 and eCastingBar_Saved.MirrorLocked == 0) then
+		eCastingBarMirror_Outline:Show()
+		mirrorTestMode()
+	else
+		eCastingBarMirror_Outline:Hide()
+		_G["eCastingBarMirror1"]:Hide()
+	end
 end
 
 --[[-------------------------------------------
@@ -1058,6 +1233,7 @@ function eCastingBar_Enable( frame )
 	if( eCastingBar_Saved[frame.."Locked"] == 0 ) then
     -- yes, lets show the outline
 		_G["eCastingBar"..frame.."_Outline"]:Show()
+		testMode()
 	end
 end
 
@@ -1076,7 +1252,8 @@ function eCastingBar_checkEnabled()
     if (eCastingBar_Saved.MirrorEnabled == 1) then
   		if( eCastingBar_Saved.MirrorLocked == 0 ) then	
         -- yes, lets show the outline
-        _G["eCastingBarMirror_Outline"]:Show()        
+        _G["eCastingBarMirror_Outline"]:Show()  
+        mirrorTestMode()      
       end		
     else
       if( eCastingBar_Saved.MirrorLocked == 0 ) then

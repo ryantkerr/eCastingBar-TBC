@@ -97,6 +97,11 @@ end
 
 function eCastingBarMirror_OnEvent(self, event, ...)
 	local arg1, arg2, arg3, arg4, arg5, arg6 = ...;
+
+	if( eCastingBar_Saved.MirrorLocked == 0 ) then
+		return
+	end
+
 	if ( event == "PLAYER_ENTERING_WORLD" ) then
 		self:Hide();
 		self.timer = nil;
@@ -138,37 +143,42 @@ end
 
 function eCastingBarMirror_OnUpdate(frame, elapsed)
 
+	if( eCastingBar_Saved.MirrorLocked == 0 or not frame.timer or not frame.value ) then
+		return
+	end
+
 	if ( frame.paused ) then
 		return;
 	end
-  if( frame.flash ) then
-    local intAlpha = _G[frame:GetName().."Flash"]:GetAlpha() + CASTING_BAR_FLASH_STEP
-    _G[frame:GetName().."StatusBar_Time"]:SetText( "" )
-    if( intAlpha < 1 ) then
-      _G[frame:GetName().."Flash"]:SetAlpha( intAlpha )
-    else
-      frame.flash = nil
-    end
-    
-  elseif ( frame.fadeOut ) then
-    local intAlpha = frame:GetAlpha() - CASTING_BAR_ALPHA_STEP
-    if( intAlpha > 0 ) then
-      frame:SetAlpha( intAlpha )
-    else
-      frame.fadeOut = nil
-      frame.timer = nil
-      frame:Hide()
-    end
-  elseif (frame.unknown) then
+
+	local statusbar = _G[frame:GetName().."StatusBar"];
+
+  	if( frame.flash ) then
+    	local intAlpha = _G[frame:GetName().."Flash"]:GetAlpha() + CASTING_BAR_FLASH_STEP
+    	_G[frame:GetName().."StatusBar_Time"]:SetText( "" )
+    	if( intAlpha < 1 ) then
+      		_G[frame:GetName().."Flash"]:SetAlpha( intAlpha )
+	    else
+			frame.flash = nil
+	    end
+  	elseif ( frame.fadeOut ) then
+    	local intAlpha = frame:GetAlpha() - CASTING_BAR_ALPHA_STEP
+    	if( intAlpha > 0 ) then
+      		frame:SetAlpha( intAlpha )
+    	else
+			frame.fadeOut = nil
+			frame.timer = nil
+			frame:Hide()
+	    end
+	elseif (frame.unknown) then
 		_G[frame:GetName().."StatusBar_Time"]:SetText("(Unknown)")
-  else
-    local statusbar = _G[frame:GetName().."StatusBar"];
-    if frame.timer == "FLIGHT" then
-	    frame.value = (frame.value + frame.scale * elapsed);
+  	else
+    	if frame.timer == "FLIGHT" then
+	    	frame.value = (frame.value + frame.scale * elapsed);
 		else
 			frame.value = GetMirrorTimerProgress(frame.timer)  / 1000;
 		end;
-    statusbar:SetValue(frame.value);
+    	statusbar:SetValue(frame.value);
     
     local intTimeLeft = frame.value
     local intBarValue = 0
@@ -227,8 +237,9 @@ end
 function eCastingBarMirror_MouseUp( strButton )
 	if( eCastingBar_Saved.MirrorLocked == 0 ) then
 		eCastingBarMirror_Outline:StopMovingOrSizing()
-    eCastingBar_Saved.MirrorLeft = eCastingBarMirror_Outline:GetLeft()
-    eCastingBar_Saved.MirrorBottom = eCastingBarMirror_Outline:GetBottom()
+
+    eCastingBarMirror_Outline:GetLeft()
+    eCastingBarMirror_Outline:GetBottom()
     
     eCastingBarMirrorLeftSlider:SetValue(eCastingBar_Saved.MirrorLeft)
     eCastingBarMirrorBottomSlider:SetValue(eCastingBar_Saved.MirrorBottom)
