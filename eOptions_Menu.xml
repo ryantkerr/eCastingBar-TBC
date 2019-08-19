@@ -95,6 +95,7 @@
 	<Scripts>
 		<OnClick>
 			eCastingBar_Menu_Show(self.menu, self.index, self:GetName());
+			PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 		</OnClick>
 	</Scripts>
 </Button>
