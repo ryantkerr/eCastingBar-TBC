@@ -444,7 +444,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-							<EditBox name="eCastingBarFontEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
+							<EditBox name="eCastingBarFontSizeEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
@@ -1186,7 +1186,7 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
-							<EditBox name="eCastingBarMirrorFontEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
+							<EditBox name="eCastingBarMirrorFontSizeEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
     						<Size>
     							<AbsDimension x="42" y="16"/>
     						</Size>
