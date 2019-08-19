@@ -482,6 +482,27 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
+							<EditBox name="eCastingBarAlphaEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
+    						<Size>
+    							<AbsDimension x="42" y="16"/>
+    						</Size>
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarAlphaSlider" relativePoint="TOPRIGHT">
+    								<Offset>
+    									<AbsDimension x="10" y="0"/>
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Scripts>
+    							<OnLoad>
+    								self:SetMaxLetters(4)
+    							</OnLoad>
+    							<OnEnterPressed>
+    								eCastingBarAlphaSlider:SetValue(self:GetNumber())
+    							</OnEnterPressed>
+    						</Scripts>
+    						<FontString inherits="ChatFontNormal"/>
+    					</EditBox>
     					<Slider name="eCastingBarWidthSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
@@ -1224,6 +1245,27 @@
     							</OnLoad>
     						</Scripts>
     					</Slider>
+							<EditBox name="eCastingBarMirrorAlphaEditBox" autoFocus="false" inherits="InputBoxTemplate" bytes="64">
+    						<Size>
+    							<AbsDimension x="42" y="16"/>
+    						</Size>
+    						<Anchors>
+    							<Anchor point="TOPLEFT" relativeTo="eCastingBarMirrorAlphaSlider" relativePoint="TOPRIGHT">
+    								<Offset>
+    									<AbsDimension x="10" y="0"/>
+    								</Offset>
+    							</Anchor>
+    						</Anchors>
+    						<Scripts>
+    							<OnLoad>
+    								self:SetMaxLetters(4)
+    							</OnLoad>
+    							<OnEnterPressed>
+    								eCastingBarMirrorAlphaSlider:SetValue(self:GetNumber())
+    							</OnEnterPressed>
+    						</Scripts>
+    						<FontString inherits="ChatFontNormal"/>
+    					</EditBox>
     					<Slider name="eCastingBarMirrorWidthSlider" inherits="eCastingBarSliderTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
