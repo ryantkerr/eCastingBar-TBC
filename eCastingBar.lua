@@ -1160,7 +1160,6 @@ function eCastingBar_checkLocked()
 
 	local barOutline = _G["eCastingBar_Outline"]
 	if(eCastingBar_Saved["Locked"] == 0 and eCastingBar_Saved["Enabled"] == 1) then
-		testMode()
 		barOutline:Show()
 	else
 		barOutline:Hide()
@@ -1170,7 +1169,6 @@ function eCastingBar_checkLocked()
 	-- only show the outline if we are enabled
 	if (eCastingBar_Saved.MirrorEnabled == 1 and eCastingBar_Saved.MirrorLocked == 0) then
 		eCastingBarMirror_Outline:Show()
-		testModeMirror()
 	else
 		eCastingBarMirror_Outline:Hide()
 		_G["eCastingBarMirror1"]:Hide()
@@ -1228,15 +1226,12 @@ function eCastingBar_Enable( frame )
 	if( eCastingBar_Saved[frame.."Locked"] == 0 ) then
     -- yes, lets show the outline
 		_G["eCastingBar"..frame.."_Outline"]:Show()
-		testMode()
 	end
 end
 
 --[[ Toggle enabled state. ]]--
 
 function eCastingBar_checkEnabled()
-	testMode()
-    testModeMirror()      
   for index, option in pairs(frameSuffixes) do
   	if (eCastingBar_Saved[option.."Enabled"] == 1) then
   		eCastingBar_Enable(option)
