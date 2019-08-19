@@ -181,6 +181,8 @@ function eCastingBar_CheckButton_OnClick(self)
   elseif (string.find(self.index, "HideBorder")) then
     eCastingBar_checkBorders()
   end
+	testMode()
+    testModeMirror()      
 end
 
 function convertBooleanToInt(val)

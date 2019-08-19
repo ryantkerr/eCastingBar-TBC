@@ -222,7 +222,7 @@ function testMode()
 
 	cleanTicks()
 
-	if (eCastingBar_Saved.Enabled == 1) then
+	if (eCastingBar_Saved.Enabled == 1 and eCastingBar_Saved.Locked == 0) then
 		castBar:Show()
 	else
 		castBar:Hide()
@@ -314,7 +314,7 @@ function testMode()
 	end
 end
 
-function mirrorTestMode()
+function testModeMirror()
 	--if true then return end
 	local mirrorName = "eCastingBarMirror1"
 	local dialog = _G[mirrorName]
@@ -325,7 +325,7 @@ function mirrorTestMode()
 	local testTotalTime = 60
 	local testTimeLeft = 40
 
-	if (eCastingBar_Saved.MirrorEnabled == 1) then
+	if (eCastingBar_Saved.MirrorEnabled == 1 and eCastingBar_Saved.MirrorLocked == 0) then
 		dialog:Show()
 	else
 		dialog:Hide()
@@ -333,7 +333,11 @@ function mirrorTestMode()
 	end
 
     _G[mirrorName.."Flash"]:Hide()
-	text:SetText("Test Mode")
+    if(eCastingBar_Saved.MirrorShowTimerLabel == 1) then
+		text:SetText("Test Mode")
+	else 
+		text:SetText("")
+	end
 	statusbar:SetStatusBarColor(unpack(eCastingBar_Saved.BreathColor));
 	statusbar:SetMinMaxValues(0,1)
 	statusbar:SetValue(testTimeLeft/testTotalTime)
@@ -357,11 +361,7 @@ end
 
 function eCastingBar_OnEvent(self, newevent, ...)
 
-	if(eCastingBar_Saved["MirrorLocked"] == 0) then
-		mirrorTestMode()
-	end
-	if(eCastingBar_Saved["Locked"] == 0) then
-		testMode()
+	if(eCastingBar_Saved["Enabled"] == 0 or eCastingBar_Saved["Locked"] == 0) then
 		return
 	end
 
@@ -624,12 +624,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 end
 
 function eCastingBar_OnUpdate(self, elapsed)
-
-	if(eCastingBar_Saved["MirrorLocked"] == 0) then
-		mirrorTestMode()
-	end
-	if(eCastingBar_Saved["Locked"] == 0) then
-		testMode()
+	if(eCastingBar_Saved["Locked"] == 0 or eCastingBar_Saved["Enabled"] == 0) then
 		return
 	end
 
@@ -830,7 +825,7 @@ function setup()
 	eCastingBar_checkEnabled()
 	eCastingBar_checkLocked()
 	eCastingBar_checkBorders()
-  eCastingBar_checkTimeColors()
+  	eCastingBar_checkTimeColors()
 	eCastingBar_setLagColor()
 	eCastingBar_setDelayColor()
 	eCastingBar_SetSize()
@@ -1175,7 +1170,7 @@ function eCastingBar_checkLocked()
 	-- only show the outline if we are enabled
 	if (eCastingBar_Saved.MirrorEnabled == 1 and eCastingBar_Saved.MirrorLocked == 0) then
 		eCastingBarMirror_Outline:Show()
-		mirrorTestMode()
+		testModeMirror()
 	else
 		eCastingBarMirror_Outline:Hide()
 		_G["eCastingBarMirror1"]:Hide()
@@ -1240,6 +1235,8 @@ end
 --[[ Toggle enabled state. ]]--
 
 function eCastingBar_checkEnabled()
+	testMode()
+    testModeMirror()      
   for index, option in pairs(frameSuffixes) do
   	if (eCastingBar_Saved[option.."Enabled"] == 1) then
   		eCastingBar_Enable(option)
@@ -1253,7 +1250,6 @@ function eCastingBar_checkEnabled()
   		if( eCastingBar_Saved.MirrorLocked == 0 ) then	
         -- yes, lets show the outline
         _G["eCastingBarMirror_Outline"]:Show()  
-        mirrorTestMode()      
       end		
     else
       if( eCastingBar_Saved.MirrorLocked == 0 ) then

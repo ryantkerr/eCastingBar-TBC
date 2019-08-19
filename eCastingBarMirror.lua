@@ -98,7 +98,7 @@ end
 function eCastingBarMirror_OnEvent(self, event, ...)
 	local arg1, arg2, arg3, arg4, arg5, arg6 = ...;
 
-	if( eCastingBar_Saved.MirrorLocked == 0 ) then
+	if( eCastingBar_Saved.MirrorEnabled == 0 or eCastingBar_Saved.MirrorLocked == 0 ) then
 		return
 	end
 
@@ -143,12 +143,12 @@ end
 
 function eCastingBarMirror_OnUpdate(frame, elapsed)
 
-	if( eCastingBar_Saved.MirrorLocked == 0 or not frame.timer or not frame.value ) then
-		return
+	if ( not frame or frame.paused or not frame.timer or not frame.value ) then
+		return;
 	end
 
-	if ( frame.paused ) then
-		return;
+	if(eCastingBar_Saved.MirrorEnabled == 0 or eCastingBar_Saved.MirrorLocked == 0 ) then
+		return
 	end
 
 	local statusbar = _G[frame:GetName().."StatusBar"];
