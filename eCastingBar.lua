@@ -218,7 +218,7 @@ function testMode()
 	local testTotalTime = 4
 	local testProgress = testCastTime/testTotalTime
 	local testLag = 0.1
-	local testDelay = 0.1
+	local testDelay = 0.5
 
 	cleanTicks()
 
