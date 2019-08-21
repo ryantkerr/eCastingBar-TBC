@@ -315,7 +315,6 @@ function testMode()
 end
 
 function testModeMirror()
-	--if true then return end
 	local mirrorName = "eCastingBarMirror1"
 	local dialog = _G[mirrorName]
 	local statusbar = _G[mirrorName.."StatusBar"]

@@ -270,6 +270,11 @@
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="eCastingBarMirror1" inherits="eCastingBarMirror">
+		<Scripts>
 			<OnMouseDown>
 				eCastingBarMirror_MouseDown( button, "eCastingBarMirror_Outline", "" );
 			</OnMouseDown>			
@@ -277,9 +282,6 @@
 				eCastingBarMirror_MouseUp( button, "eCastingBarMirror_Outline", "" );
 			</OnMouseUp>	
 		</Scripts>
-	</Frame>
-
-	<Frame name="eCastingBarMirror1" inherits="eCastingBarMirror">
 	</Frame>
 	<Frame name="eCastingBarMirror2" inherits="eCastingBarMirror">
 		<Anchors>
