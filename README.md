@@ -1,8 +1,10 @@
 # eCastingBar Classic
 
-The casting bar addon that replaces the default player spellcasting bar with a customizable replacement. This addon has [been around since Vanilla WoW](https://youtu.be/XM1DLuL5DYI?t=24), and now it's available for Classic WoW 1.13.2.
+_The casting bar addon that replaces the default player spellcasting bar with a customizable replacement. This addon has [been around since Vanilla WoW](https://youtu.be/XM1DLuL5DYI?t=24), and now it's available for Classic WoW 1.13.2._
 
-![eCastingBar Legacy Bars](https://user-images.githubusercontent.com/52019397/62000974-4254d080-b0b3-11e9-906b-6205455330f0.png) ![eCastingBar Options](https://user-images.githubusercontent.com/52019397/62000979-4ed92900-b0b3-11e9-84aa-fa0e4c307bdc.png)
+### **New Features: Display Latency & Channel Spell Ticks!**
+
+![eCastingBar New Features](https://user-images.githubusercontent.com/52019397/63550839-82b43c80-c501-11e9-9a7e-ffba566cd734.png)
 
 ## About
 
