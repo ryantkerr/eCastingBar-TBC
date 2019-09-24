@@ -11,7 +11,6 @@ end
 function eCastingBarOptions_OnEvent(self, event, ...)
 	if (event == "PLAYER_ENTERING_WORLD") then
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-		ECB_addChat( CASTINGBAR_LOADED )
 		eCB_FMT_Orig_BeginFlight = FlightMapTimes_BeginFlight;
 		eCB_FMT_Orig_EndFlight = FlightMapTimes_EndFlight;
 		FlightMapTimes_BeginFlight = eCB_FMT_BeginFlight;
