@@ -213,7 +213,7 @@ function testMode()
 	local barIcon = _G["eCastingBarStatusBarIcon"];
 
 	local n,n,testIcon = GetSpellInfo(5)
-	local testName = "Test Mode"
+	local testName = "Castbar Outline"
 	local testCastTime = 2.4
 	local testTotalTime = 4
 	local testProgress = testCastTime/testTotalTime
@@ -333,7 +333,7 @@ function testModeMirror()
 
     _G[mirrorName.."Flash"]:Hide()
     if(eCastingBar_Saved.MirrorShowTimerLabel == 1) then
-		text:SetText("Test Mode")
+		text:SetText("Mirror Bar Outline")
 	else 
 		text:SetText("")
 	end
