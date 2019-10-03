@@ -40,9 +40,6 @@ local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border
 -- Casting Bar Frame Suffixes
 local frameSuffixes = { "", }
 local castSendTime
--- Hunter Spells
-local AimedShot = GetSpellInfo(19434)
-local MultiShot = GetSpellInfo(2643)
 
 local CASTING_BAR_DEFAULTS = {
   ["Locked"] = 0,
@@ -404,10 +401,6 @@ function eCastingBar_OnEvent(self, newevent, ...)
 	local lagTexture = _G[name.."LagBarTexture"];
 	local lagBar = _G[name.."LagBar"];
 	local frame = self.frame
-	
-	if (spellName == AimedShot and spellName == MultiShot) or (displayName == AimedShot and displayName == MultiShot) then
-		return
-	end
 	if( newevent == "UNIT_SPELLCAST_START" ) then
 		local spellName, displayName, texture, startTime, endTime, isTradeSkill, castID, notInterruptible = CastingInfo(unit)
 
@@ -497,7 +490,7 @@ function eCastingBar_OnEvent(self, newevent, ...)
 			self.holdTime = 0
 		end
 
-	elseif( newevent == "UNIT_SPELLCAST_INTERRUPTED" or (newevent == "UNIT_SPELLCAST_FAILED" and spellName ~= barText.spellName) or (GetSpellInfo(spellID) == AimedShot or GetSpellInfo(spellID) == MultiShot) ) then
+	elseif( newevent == "UNIT_SPELLCAST_INTERRUPTED" or (newevent == "UNIT_SPELLCAST_FAILED" and spellName ~= barText.spellName) ) then
 
 		if ( self:IsShown() and self.casting and not self.fadeOut ) then
 			barStatusBar:SetValue( 1 )
