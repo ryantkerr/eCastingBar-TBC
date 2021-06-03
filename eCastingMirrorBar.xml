@@ -2,7 +2,7 @@
 ..\FrameXML\UI.xsd">
 	<Script file="eCastingBarMirror.lua"/>
 
-	<Frame name="eCastingBarMirror" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true" virtual="true">
+	<Frame name="eCastingBarMirror" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true" virtual="true" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
@@ -207,7 +207,7 @@
 			</StatusBar>
 		</Frames>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 				eCastingBarMirror_OnLoad(self);
@@ -224,7 +224,7 @@
 
 
 	
-	<Frame name="eCastingBarMirror_Outline" movable="true" frameStrata="MEDIUM" enableMouse="true" parent="UIParent">
+	<Frame name="eCastingBarMirror_Outline" movable="true" frameStrata="MEDIUM" enableMouse="true" parent="UIParent" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
@@ -249,6 +249,12 @@
 			</BackgroundInsets>
 		</Backdrop>
 
+		<KeyValues>
+            <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+            <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+            <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
+
 		<Layers>					
 			<Layer level="OVERLAY">
 				<FontString name="eCastingBarMirrorDragButtonText" inherits="eCastingBarFont" text="MIRROR_OUTLINE_TXT" justifyH="LEFT">
@@ -266,7 +272,7 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 			</OnLoad>

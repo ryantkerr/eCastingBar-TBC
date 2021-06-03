@@ -1,7 +1,7 @@
 -- Global constants
 CASTING_BAR_MAJOR_VERSION = "1";
 CASTING_BAR_MINOR_VERSION = "4";
-CASTING_BAR_REVISION = "2";
+CASTING_BAR_REVISION = "3";
 CASTING_BAR_ALPHA_STEP = 0.05;
 CASTING_BAR_FLASH_STEP = 0.2;
 CASTING_BAR_HOLD_TIME = 1;
@@ -36,7 +36,7 @@ eCastingBar_SETTINGS_INDEX = "";
 local CASTING_BAR_COLOR_TEXTURE = "Interface\\TargetingFrame\\UI-StatusBar-Glow";
 local CASTING_BAR_BACKGROUND_FILE = "Interface\\Tooltips\\UI-Tooltip-Background";
 local CASTING_BAR_EDGE_FILE = "Interface\\Tooltips\\UI-Tooltip-Border";
-local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\DialogFrame\\UI-DialogBox-Border";
+local CASTING_BAR_EDGE_FILE_UNINT = "Interface\\Tooltips\\UI-Tooltip-Border";
 -- Casting Bar Frame Suffixes
 local frameSuffixes = { "", }
 local castSendTime

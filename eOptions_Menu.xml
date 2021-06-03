@@ -101,7 +101,7 @@
 </Button>
 
 
-<Frame name="eCastingBar_TooltipBGTemplate" hidden="false" virtual="true">
+<Frame name="eCastingBar_TooltipBGTemplate" hidden="false" virtual="true" inherits="BackdropTemplate">
 	<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
 		<EdgeSize>
 			<AbsValue val="16"/>
@@ -138,7 +138,7 @@
 	</Scripts>
 </Button>
 
-<Button name="eCastingBar_DropMenu" inherits="eCastingBar_TooltipBGTemplate" hidden="true" frameStrata="FULLSCREEN">
+<Button name="eCastingBar_DropMenu" inherits="eCastingBar_TooltipBGTemplate BackdropTemplate" hidden="true" frameStrata="FULLSCREEN">
 	<Size><AbsDimension x="10" y="10"/></Size>
 	<Anchors>
 		<Anchor point="CENTER"/>
@@ -348,7 +348,7 @@
 		</Button>
 	</Frames>
 	<Scripts>
-		<OnLoad>
+		<OnLoad inherit="prepend">
 			self:SetBackdropColor(.2,.2,.2,1);
 		</OnLoad>
 		<OnEnter>

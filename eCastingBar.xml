@@ -17,7 +17,7 @@
 		<Color r="1.0" g="1.0" b="1.0"/>
 	</FontString>
 
-	<Frame name="eCastingBar" toplevel="true" parent="UIParent" movable="true" enableMouse="false" hidden="true">
+	<Frame name="eCastingBar" toplevel="true" parent="UIParent" movable="true" enableMouse="false" hidden="true" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
@@ -280,7 +280,7 @@
 			</StatusBar>
 		</Frames>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 				self:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -294,7 +294,7 @@
 			</OnUpdate>
 		</Scripts>
 	</Frame>
-	<Frame name="eCastingBar_Outline" movable="true" frameStrata="MEDIUM" enableMouse="true" parent="UIParent">
+	<Frame name="eCastingBar_Outline" movable="true" frameStrata="MEDIUM" enableMouse="true" parent="UIParent" inherits="BackdropTemplate">
 		<Size>
 			<AbsDimension x="264" y="30"/>
 		</Size> 	
@@ -319,6 +319,12 @@
 			</BackgroundInsets>
 		</Backdrop>
 
+		<KeyValues>
+            <KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+            <KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+            <KeyValue key="backdropBorderColorAlpha" value="0.25" type="number"/>
+        </KeyValues>
+
 		<Layers>					
 			<Layer level="OVERLAY">
 				<FontString name="eCastingBarDragButtonText" inherits="eCastingBarFont" text="OUTLINE_TXT" justifyH="LEFT">
@@ -336,7 +342,7 @@
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 			</OnLoad>

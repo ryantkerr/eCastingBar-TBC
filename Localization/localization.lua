@@ -23,7 +23,7 @@ CASTINGBAR_RESET = "Resetting Default Settings"
 -- Bindings
 BINDING_HEADER_ECASTINGBAR = "eCastingBar"
 BINDING_NAME_ECASTINGBARDLG = "Toggle Configuration Window";
-ECASTINGBAR_TITLE = "eCastingBar Classic"
+ECASTINGBAR_TITLE = "eCastingBar TBC"
 
 -- Bar Text
 OUTLINE_TXT = "eCasting Bar Outline."

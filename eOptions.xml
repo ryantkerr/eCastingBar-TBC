@@ -26,6 +26,11 @@
 	</CheckButton>
 
 	<Button name="eCastingBarButtonTemplate" virtual="true">
+	<KeyValues>
+		<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
+		<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+		<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+	</KeyValues>
 		<Size>
 			<AbsDimension x="25" y="25"/>
 		</Size>
@@ -74,8 +79,13 @@
 		</Scripts>
 	</Slider>
 
-	<Frame name="eCB_OptionFrame" toplevel="true" movable="true" enableMouse="true" parent="UIParent" hidden="true">
-		<Size>
+	<Frame name="eCB_OptionFrame" toplevel="true" movable="true" enableMouse="true" parent="UIParent" hidden="true" inherits="BackdropTemplate">
+	<KeyValues>
+		<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
+		<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+		<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+	</KeyValues>
+	<Size>
       <AbsDimension x="437" y="563" />
     </Size>
     <Anchors>
@@ -97,7 +107,7 @@
       </EdgeSize>
     </Backdrop>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
 				self:RegisterEvent("PLAYER_ENTERING_WORLD");
 				eCastingBarOptions_OnLoad()
 				self:RegisterForDrag("LeftButton");
@@ -380,7 +390,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-							<Button name="eCastingBarIconPosition" inherits="eCastingBarMenuControlTemplate">
+							<Button name="eCastingBarIconPosition" inherits="eCastingBarMenuControlTemplate BackdropTemplate">
 								<Size>
 									<AbsDimension x="70" y="24"/>
 								</Size>
@@ -392,7 +402,7 @@
 									</Anchor>
 								</Anchors>
 								<Scripts>
-									<OnLoad>
+									<OnLoad inherit="prepend">
 										self:SetBackdropColor(0.0, 0.0, 0.0);
 										self.menu = CASTINGBAR_ICON_POSITION;
 										self.index = "IconPosition";
@@ -427,7 +437,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-        			<Slider name="eCastingBarFontSlider" inherits="eCastingBarSliderTemplate">
+        			<Slider name="eCastingBarFontSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -439,7 +449,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "FontSize"
     							</OnLoad>
     						</Scripts>
@@ -465,7 +475,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-        			<Slider name="eCastingBarAlphaSlider" inherits="eCastingBarSliderTemplate">
+        			<Slider name="eCastingBarAlphaSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -477,7 +487,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "Alpha"
     							</OnLoad>
     						</Scripts>
@@ -503,7 +513,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarWidthSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarWidthSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -515,7 +525,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "Width"
     							</OnLoad>
     						</Scripts>
@@ -541,7 +551,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarHeightSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarHeightSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -553,7 +563,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "Height"
     							</OnLoad>
     						</Scripts>
@@ -579,7 +589,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarLeftSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarLeftSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -591,7 +601,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "Left"
     							</OnLoad>
     						</Scripts>
@@ -617,7 +627,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarBottomSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarBottomSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -629,7 +639,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "Bottom"
     							</OnLoad>
     						</Scripts>
@@ -657,7 +667,7 @@
     					</EditBox>
 
     					<!-- Texture Select Menu -->
-    					<Frame name="eCastingBarExample">
+    					<Frame name="eCastingBarExample" inherits="BackdropTemplate">
     						<Size>
     							<AbsDimension x="340" y="30"/>
     						</Size> 			
@@ -712,14 +722,14 @@
     							</StatusBar>
     						</Frames>
     						<Scripts>
-    						<OnLoad>
+    						<OnLoad inherit="prepend">
     							self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
     							self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b,0);
     						</OnLoad>
     						</Scripts>
     					</Frame>
 
-    					<Button name="eCastingBarSelectTexture" inherits="eCastingBarMenuControlTemplate">
+    					<Button name="eCastingBarSelectTexture" inherits="eCastingBarMenuControlTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="140" y="25"/>
     						</Size>
@@ -731,7 +741,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self:SetBackdropColor(0.0, 0.0, 0.0, 1);
     								self.menu = CASTINGBAR_TEXTURES_MENU;
     								self.index = "SelectTexture";
@@ -1190,7 +1200,7 @@
     							</OnLoad>
     						</Scripts>
     					</CheckButton>
-    					<Slider name="eCastingBarMirrorFontSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarMirrorFontSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1202,7 +1212,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorFontSize"
     							</OnLoad>
     						</Scripts>
@@ -1228,7 +1238,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-        			<Slider name="eCastingBarMirrorAlphaSlider" inherits="eCastingBarSliderTemplate">
+        			<Slider name="eCastingBarMirrorAlphaSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1240,7 +1250,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorAlpha"
     							</OnLoad>
     						</Scripts>
@@ -1266,7 +1276,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarMirrorWidthSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarMirrorWidthSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1278,7 +1288,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorWidth"
     							</OnLoad>
     						</Scripts>
@@ -1304,7 +1314,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarMirrorHeightSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarMirrorHeightSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1316,7 +1326,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorHeight"
     							</OnLoad>
     						</Scripts>
@@ -1343,7 +1353,7 @@
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
     					
-    					<Slider name="eCastingBarMirrorLeftSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarMirrorLeftSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1355,7 +1365,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorLeft"
     							</OnLoad>
     						</Scripts>
@@ -1381,7 +1391,7 @@
     						</Scripts>
     						<FontString inherits="ChatFontNormal"/>
     					</EditBox>
-    					<Slider name="eCastingBarMirrorBottomSlider" inherits="eCastingBarSliderTemplate">
+    					<Slider name="eCastingBarMirrorBottomSlider" inherits="eCastingBarSliderTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="120" y="16"/>
     						</Size>
@@ -1393,7 +1403,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.index = "MirrorBottom"
     							</OnLoad>
     						</Scripts>
@@ -1421,7 +1431,7 @@
     					</EditBox>
     					
     					<!-- Texture Select Menu -->
-      				<Frame name="eCastingBarMirrorExample">
+      				<Frame name="eCastingBarMirrorExample" inherits="BackdropTemplate">
       					<Size>
       						<AbsDimension x="340" y="30"/>
       					</Size> 			
@@ -1476,13 +1486,13 @@
       						</StatusBar>
       					</Frames>
       					<Scripts>
-      					<OnLoad>
+      					<OnLoad inherit="prepend">
       						self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
       						self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b,0);
       					</OnLoad>
       					</Scripts>
       				</Frame>
-      				<Button name="eCastingBarMirrorSelectTexture" inherits="eCastingBarMenuControlTemplate">
+      				<Button name="eCastingBarMirrorSelectTexture" inherits="eCastingBarMenuControlTemplate BackdropTemplate">
       					<Size>
       						<AbsDimension x="140" y="25"/>
       					</Size>
@@ -1494,7 +1504,7 @@
       						</Anchor>
       					</Anchors>
       					<Scripts>
-      						<OnLoad>
+      						<OnLoad inherit="prepend">
       							self:SetBackdropColor(0.0, 0.0, 0.0, 1);
       							self.menu = CASTINGBAR_TEXTURES_MENU;
       							self.index = "MirrorSelectTexture";
@@ -1806,7 +1816,7 @@
     						</Scripts>
     					</Button>
     
-    					<Button name="eCastingBarSettings" inherits="eCastingBarMenuControlTemplate">
+    					<Button name="eCastingBarSettings" inherits="eCastingBarMenuControlTemplate BackdropTemplate">
     						<Size>
     							<AbsDimension x="160" y="24"/>
     						</Size>
@@ -1818,7 +1828,7 @@
     							</Anchor>
     						</Anchors>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self:SetBackdropColor(0.0, 0.0, 0.0);
     								self.menu = "SavedSettings";
     								self.index = "SavedSettings";
