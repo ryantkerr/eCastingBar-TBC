@@ -12,6 +12,11 @@
 			<AbsInset left="5" right="5" top="5" bottom="5"/>
 		</BackgroundInsets>
 	</Backdrop>
+	<KeyValues>
+		<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+		<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+		<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+	</KeyValues>
 </Frame>
 
 <Button name="eCastingBarMenuControlTemplate" inherits="eCastingBarTooltipBGTemplate" virtual="true">
@@ -113,6 +118,11 @@
 			<AbsInset left="5" right="5" top="5" bottom="5"/>
 		</BackgroundInsets>
 	</Backdrop>
+	<KeyValues>
+		<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_16_16_5555" type="global"/>
+		<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+		<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+	</KeyValues>
 </Frame>
 
 <Button name="eCastingBar_MenuOptionTemplate" virtual="true">

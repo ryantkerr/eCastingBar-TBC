@@ -106,6 +106,7 @@
         <AbsValue val="32" />
       </EdgeSize>
     </Backdrop>
+	
 		<Scripts>
 			<OnLoad inherit="prepend">
 				self:RegisterEvent("PLAYER_ENTERING_WORLD");
@@ -689,6 +690,11 @@
     								<AbsInset left="5" right="5" top="5" bottom="5"/>
     							</BackgroundInsets>
     						</Backdrop>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_8_12_1111" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Frames>
     							<StatusBar name="$parentStatusBar">
     								<Size>
@@ -750,7 +756,7 @@
     					</Button>
     					
     					<!-- CastingBar Color -->
-    					<Button name="btnSpellColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnSpellColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="eCastingBarHeightSlider">
     								<Offset>
@@ -762,7 +768,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -771,14 +777,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "SpellColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnChannelColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnChannelColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="btnSpellColor">
     								<Offset>
@@ -790,7 +801,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -799,14 +810,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "ChannelColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnSuccessColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnSuccessColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnSpellColor">
     								<Offset>
@@ -818,7 +834,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -827,14 +843,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "SuccessColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnFailedColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnFailedColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnChannelColor">
     								<Offset>
@@ -846,7 +867,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -855,14 +876,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "FailedColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnTimeColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnTimeColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnSuccessColor">
     								<Offset>
@@ -874,7 +900,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -883,14 +909,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "TimeColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     					
-    					<Button name="btnLagColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnLagColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnFailedColor">
     								<Offset>
@@ -902,7 +933,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -911,14 +942,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "LagColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
 
-    					<Button name="btnFlashBorderColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnFlashBorderColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="btnChannelColor">
     								<Offset>
@@ -930,7 +966,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -939,14 +975,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "FlashBorderColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
 
-							<Button name="btnDelayColor" inherits="eCastingBarButtonTemplate">
+							<Button name="btnDelayColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnFlashBorderColor">
     								<Offset>
@@ -958,7 +999,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -967,8 +1008,13 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "DelayColor"
     							</OnLoad>
     						</Scripts>
@@ -1453,6 +1499,11 @@
       							<AbsInset left="5" right="5" top="5" bottom="5"/>
       						</BackgroundInsets>
       					</Backdrop>
+						<KeyValues>
+							<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_8_12_1111" type="global"/>
+							<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+							<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+						</KeyValues>
       					<Frames>
       						<StatusBar name="$parentStatusBar">
       							<Size>
@@ -1513,7 +1564,7 @@
       				</Button>
     					
               <!-- MirrorBar Color -->
-    					<Button name="btnFeignDeathColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnFeignDeathColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="eCastingBarMirrorHeightSlider">
     								<Offset>
@@ -1525,7 +1576,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1534,14 +1585,19 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "FeignDeathColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
     
-    					<Button name="btnExhaustionColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnExhaustionColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="btnFeignDeathColor">
     								<Offset>
@@ -1553,7 +1609,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1562,13 +1618,18 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "ExhaustionColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
-    					<Button name="btnBreathColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnBreathColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnFeignDeathColor">
     								<Offset>
@@ -1580,7 +1641,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1589,13 +1650,18 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "BreathColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
-    					<Button name="btnFlightColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnFlightColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnExhaustionColor">
     								<Offset>
@@ -1607,7 +1673,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1616,13 +1682,18 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "FlightColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
-    					<Button name="btnMirrorFlashBorderColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnMirrorFlashBorderColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="btnExhaustionColor">
     								<Offset>
@@ -1634,7 +1705,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1643,13 +1714,18 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "MirrorFlashBorderColor"
     							</OnLoad>
     						</Scripts>
     					</Button>
-    					<Button name="btnMirrorTimeColor" inherits="eCastingBarButtonTemplate">
+    					<Button name="btnMirrorTimeColor" inherits="eCastingBarButtonTemplate BackdropTemplate">
     						<Anchors>
     							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="btnMirrorFlashBorderColor">
     								<Offset>
@@ -1661,7 +1737,7 @@
     							<Layer level="ARTWORK">
     								<Texture name="$parentTexture">
     									<Size>
-    										<AbsDimension y="16" x="16"/>
+    										<AbsDimension y="18" x="18"/>
     									</Size>
     									<Anchors>
     										<Anchor point="CENTER">
@@ -1670,8 +1746,13 @@
     								</Texture>
     							</Layer>
     						</Layers>
+							<KeyValues>
+								<KeyValue key="backdropInfo" value="BACKDROP_TOOLTIP_12_12_4444" type="global"/>
+								<KeyValue key="backdropBorderColor" value="LEGENDARY_ORANGE_COLOR" type="global"/>
+								<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
+							</KeyValues>
     						<Scripts>
-    							<OnLoad>
+    							<OnLoad inherit="prepend">
     								self.objindex = "MirrorTimeColor"
     							</OnLoad>
     						</Scripts>
